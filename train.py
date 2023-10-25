@@ -12,10 +12,10 @@ from transformers import (
 )
 from peft import LoraConfig, PeftModel, get_peft_model
 from trl import SFTTrainer
-from guardrail.client import (
-    run_metrics,
-    run_simple_metrics,
-    create_dataset)
+# from guardrail.client import (
+#     run_metrics,
+#     run_simple_metrics,
+#     create_dataset)
 
 import json
 import argparse
@@ -24,9 +24,9 @@ os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='./config/train_config.json')
-parser.add_argument('--model_name', type=str, default='./llama-2-13b-hf/')
-parser.add_argument('--new_model', type=str, default='llama-2-13b-crossed-encoder')
-parser.add_argument('--dataset', type=str, default='./dataset/')
+parser.add_argument('--model_name', type=str, default='./llama-2-7b-hf/')
+parser.add_argument('--new_model', type=str, default='llama-2-7b-linker')
+parser.add_argument('--dataset', type=str, default='/home/fintech/jnz/codedemo/dataset/llama_preprocessed_train_dataset_natsql.json')
 
 parser=parser.parse_args()
 
@@ -90,10 +90,13 @@ if __name__ == "__main__":
     model, tokenizer, peft_config = load_model(config['model_name'])
     print("加载数据集")
     # apply prompt template per sample
-    dataset = load_dataset(config['dataset'], split="train")
+    # dataset = load_dataset(config['dataset'], split="train")
+    data_files = {'train': '/home/fintech/jnz/codedemo/dataset/llama_preprocessed_train_dataset_natsql.json', 'test': '/home/fintech/jnz/codedemo/dataset/llama_preprocessed_test_dataset_natsql.json','dev': '/home/fintech/jnz/codedemo/dataset/llama_preprocessed_dev_dataset_natsql.json'}
+    dataset = load_dataset('json', data_files='/home/fintech/jnz/codedemo/dataset/llama_preprocessed_train_dataset_natsql.json',split="train")
+    # dataset = load_dataset(config['dataset'], split="train")
     # Shuffle the dataset
     dataset_shuffled = dataset.shuffle(seed=42)
-    dataset = dataset_shuffled.select(range(100))
+    # dataset = dataset_shuffled.select(range(100))
     # Select the first 50 rows from the shuffled dataset, comment if you want 15k
     #dataset = dataset.map(remove_columns=list(dataset.features))
     print(dataset[0])

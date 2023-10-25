@@ -38,6 +38,8 @@ Sample usage:
 ```
 python src/transformers/models/llama/convert_llama_weights_to_hf.py \
     --input_dir /path/to/downloaded/llama/weights --model_size 7B --output_dir /output/path
+python convert_llama_weights_to_hf.py --input_dir /home/fintech/jnz/codedemo/llama-2-7b --model_size 7B --output_dir /home/fintech/jnz/codedemo/llama-2-7b-hf
+```
 ```
 
 Thereafter, models can be loaded via:
