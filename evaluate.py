@@ -116,7 +116,7 @@ def text_gen_eval_wrapper(model, tokenizer, prompt, model_id=1, show_metrics=Tru
                     max_length=200)
     result = pipe(f"<s>[INST] {prompt} [/INST]")
     generated_text = result[0]['generated_text']
-
+    print(generated_text)
     # Find the index of "### Assistant" in the generated text
     index = generated_text.find("[/INST] ")
     if index != -1:
@@ -135,6 +135,8 @@ def text_gen_eval_wrapper(model, tokenizer, prompt, model_id=1, show_metrics=Tru
 if __name__ == '__main__':
     
     model, tokenizer ,peft_config= load_model(config['model_name'])
+
+    prompt=''
 
 
     
