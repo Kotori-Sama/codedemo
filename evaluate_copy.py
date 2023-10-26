@@ -11,8 +11,6 @@ from transformers import (
     pipeline,
     logging,
 )
-from sklearn.metrics import accuracy_score, recall_score
-from sklearn.preprocessing import MultiLabelBinarizer
 from peft import LoraConfig, PeftModel, get_peft_model
 from trl import SFTTrainer
 import json
@@ -186,6 +184,7 @@ if __name__ == '__main__':
     pre_table_labels=[]
     pre_column_labels=[]
     i=0
+    instructions = []
     responses = []
     for data in tqdm(dataset, desc="Processing"):
         # i+=1
@@ -195,12 +194,38 @@ if __name__ == '__main__':
         pattern = r'<s>\[INST\] (.*?)\[/INST\] (.*?)</s>'
         matches = re.search(pattern, text)
         question_db = matches.group(1)
+        instructions.append("<s>[INST] %s [/INST]"%question_db)
         ans = matches.group(2)
 
         true_table_labels,true_column_names_list_labels=get_labels(question_db,ans)
+    
+
+    # pipe = pipeline(task="text-generation",
+    #                 model=model,
+    #                 tokenizer=tokenizer,
+    #                 max_length=500,
+    #                 do_sample=True,
+    #                 temperature=0.0)
+
+    # Generate text using the pipeline
+    pipe = pipeline(task="text-generation",
+                    model=model,
+                    tokenizer=tokenizer,
+                    max_length=500,
+                    temperature=0.0)
+    # result = pipe(f"<s>[INST] {prompt} [/INST]")
+    # generated_text = result[0]['generated_text']
+    print(pipe(instructions[0]))
+    generated_texts = []
+    for i in tqdm(range(len(instructions)), desc="generating"):
+        instruction = instructions[i]
+        generated_texts.append(pipe(instruction)[0]['generated_text'])
+        print(generated_texts)
+    print(generated_texts)
+    for generated_text in tqdm(generated_texts, desc="Processing"):
         
         #print(question_db)
-        generated_text=gen_txt(model,tokenizer,question_db)
+        # generated_texts=gen_txt(model,tokenizer,instructions)
         #print(generated_text)  
         pattern = r'\[INST\] (.*?) \[/INST\] (.*?)\[/INST\]'
         #pattern = r'\[INST\](.*?)\[/INST\](.*?)</s>'
@@ -218,9 +243,9 @@ if __name__ == '__main__':
             question_db = matches.group(1)
             ans = matches.group(2)
             INST=True
-        with open('./log/evaluate.log','a') as f:
-            f.write({'prompt':question_db,'response':ans}.__str__())
-            f.write('\n')
+
+        responses.append(ans)
+
         predict_table_labels,predict_column_names_list_labels=get_labels(question_db,ans,INST=INST)
 
         tr_table_labels.append(true_table_labels)
@@ -228,7 +253,12 @@ if __name__ == '__main__':
         pre_table_labels.append(predict_table_labels)
         pre_column_labels+=predict_column_names_list_labels
 
-
+    for ins, ans in zip(instructions, responses):
+        print(ins)
+        print(ans)
+        print("")
+    from sklearn.metrics import accuracy_score, recall_score
+    from sklearn.preprocessing import MultiLabelBinarizer
     log=''
     #print(tr_table_labels,pre_table_labels)
     mlb = MultiLabelBinarizer()
@@ -253,17 +283,5 @@ if __name__ == '__main__':
     print(f"列分类召回率：{recall:.2f}")
     log+=f"列分类准确率：{accuracy:.2f}\n"+f"列分类召回率：{recall:.2f}\n"
 
-    with open('./log/evaluate.log','a') as f:
+    with open('./log/evaluate.log','w') as f:
         f.write(log)
-
-
-
-    
-    
-
-
-    
-
-
-
-
