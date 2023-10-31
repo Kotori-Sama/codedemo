@@ -26,7 +26,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='./config/train_config.json')
 parser.add_argument('--model_name', type=str, default='./llama-2-7b-hf/')
 parser.add_argument('--new_model', type=str, default='llama-2-7b-linker')
-parser.add_argument('--dataset', type=str, default='/home/fintech/jnz/codedemo/dataset/llama_preprocessed_train_dataset_natsql.json')
+parser.add_argument('--dataset', type=str, default='./dataset/llama_preprocessed_train_dataset_natsql.json')
 
 parser=parser.parse_args()
 
@@ -89,16 +89,9 @@ def load_model(model_name):
 if __name__ == "__main__":
     model, tokenizer, peft_config = load_model(config['model_name'])
     print("加载数据集")
-    # apply prompt template per sample
-    # dataset = load_dataset(config['dataset'], split="train")
-    data_files = {'train': '/home/fintech/jnz/codedemo/dataset/llama_preprocessed_train_dataset_natsql.json', 'test': '/home/fintech/jnz/codedemo/dataset/llama_preprocessed_test_dataset_natsql.json','dev': '/home/fintech/jnz/codedemo/dataset/llama_preprocessed_dev_dataset_natsql.json'}
-    dataset = load_dataset('json', data_files='/home/fintech/jnz/codedemo/dataset/llama_preprocessed_train_dataset_natsql.json',split="train")
-    # dataset = load_dataset(config['dataset'], split="train")
-    # Shuffle the dataset
+    data_files = {'train': './dataset/llama_preprocessed_train_dataset_natsql.json', 'test': './dataset/llama_preprocessed_test_dataset_natsql.json','dev': './dataset/llama_preprocessed_dev_dataset_natsql.json'}
+    dataset = load_dataset('json', data_files='./dataset/llama_preprocessed_train_dataset_natsql.json',split="train")
     dataset_shuffled = dataset.shuffle(seed=42)
-    # dataset = dataset_shuffled.select(range(100))
-    # Select the first 50 rows from the shuffled dataset, comment if you want 15k
-    #dataset = dataset.map(remove_columns=list(dataset.features))
     print(dataset[0])
 
 
@@ -117,7 +110,8 @@ if __name__ == "__main__":
         warmup_ratio=config['warmup_ratio'],
         group_by_length=config['group_by_length'],
         lr_scheduler_type=config['lr_scheduler_type'],
-        report_to="tensorboard"
+        num_train_epochs=config['num_train_epochs']
+        #report_to="tensorboard"
     )
 
     trainer = SFTTrainer(
