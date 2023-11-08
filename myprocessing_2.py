@@ -46,9 +46,9 @@ if __name__ == "__main__":
                 processed_columns=[]
                 for j in range(len(columns)):
                     column=columns[j]
-                    if column == 1:
-                        column_name=tabel_name + '.' + column_names[j]   
-                        processed_columns.append(column_name)
+                    # if column == 1:
+                    column_name=tabel_name + '.' + column_names[j]   
+                    processed_columns.append(column_name)
                 processed_res_tables.append(tabel_name+':'+','.join(processed_columns))
 
             #构造fk
@@ -64,7 +64,7 @@ if __name__ == "__main__":
                                            '='+target_table_name_original+
                                            '.'+target_column_name_original)
 
-            instruction = f"[INST]{question+'|' + '|'.join(processed_res_tables) +'|'+'|'.join(processed_fk_tables)}[/INST]"
+            instruction = f"[INST] {question+' | ' + ' | '.join(processed_res_tables) +' | '+' | '.join(processed_fk_tables)} [/INST] "
             
             #构造response
             skeleton=preprocessed_data["sql_skeleton"]
@@ -72,7 +72,7 @@ if __name__ == "__main__":
             response=f"{skeleton+' | '+query}"
 
             prompt=instruction+response
-            llama_preprocessed_data['text']='<s>'+prompt+'</s>'
+            llama_preprocessed_data['text']='<s> '+prompt+' </s>'
             llama_preprocessed_dataset.append(llama_preprocessed_data)
 
         

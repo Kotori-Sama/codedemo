@@ -24,7 +24,7 @@ os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', type=str, default='./config/train_config.json')
-parser.add_argument('--model_name', type=str, default='/new_disk/uni_group/jsr_temp/pre-trained-llms/llama-2-7b-hf/')
+parser.add_argument('--model_name', type=str, default='./llama-2-7b-hf/')
 parser.add_argument('--new_model', type=str, default='llama-2-7b-linker')
 parser.add_argument('--dataset', type=str, default='./dataset/llama_preprocessed_train_dataset_natsql.json')
 
