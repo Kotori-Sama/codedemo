@@ -1,0 +1,223 @@
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Student(StuID,LName,Fname,Age,Sex,Major,Advisor,city_code)
+# Voting_record(StuID,Registration_Date,Election_Cycle,President_Vote,Vice_President_Vote,Secretary_Vote,Treasurer_Vote,Class_President_Vote,Class_Senator_Vote)
+#
+### Find the last names of students with major 50.
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Student.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns LName.No aggregation function is required on column LName.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: Student.Major = 50.0.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT LName FROM STUDENT WHERE Major  =  50
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# grapes(ID,Grape,Color)
+# appellations(No,Appelation,County,State,Area,isAVA)
+# wine(No,Grape,Winery,Appelation,State,Name,Year,Price,Score,Cases,Drink)
+#
+### What are the wines that have prices lower than 50 and have appelations in Monterey county?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables appellations,wine,and join them on appellations.Appelation = wine.Appelation.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Name.No aggregation function is required on column Name.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: appellations.County = "Monterey" and wine.Price < 50.0.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T2.Name FROM APPELLATIONS AS T1 JOIN WINE AS T2 ON T1.Appelation  =  T2.Appelation WHERE T1.County  =  "Monterey" AND T2.price  <  50
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# city(City_ID,Official_Name,Status,Area_km_2,Population,Census_Ranking)
+# farm(Farm_ID,Year,Total_Horses,Working_Horses,Total_Cattle,Oxen,Bulls,Cows,Pigs,Sheep_and_Goats)
+# farm_competition(Competition_ID,Year,Theme,Host_city_ID,Hosts)
+# competition_record(Competition_ID,Farm_ID,Rank)
+#
+### Return the themes of farm competitions, sorted by year ascending.
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables farm_competition.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Theme.No aggregation function is required on column Theme.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that column Year should be used for sorting,and the order is ASC.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT Theme FROM farm_competition ORDER BY YEAR ASC
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# CLASS(CLASS_CODE,CRS_CODE,CLASS_SECTION,CLASS_TIME,CLASS_ROOM,PROF_NUM)
+# COURSE(CRS_CODE,DEPT_CODE,CRS_DESCRIPTION,CRS_CREDIT)
+# DEPARTMENT(DEPT_CODE,DEPT_NAME,SCHOOL_CODE,EMP_NUM,DEPT_ADDRESS,DEPT_EXTENSION)
+# EMPLOYEE(EMP_NUM,EMP_LNAME,EMP_FNAME,EMP_INITIAL,EMP_JOBCODE,EMP_HIREDATE,EMP_DOB)
+# ENROLL(CLASS_CODE,STU_NUM,ENROLL_GRADE)
+# PROFESSOR(EMP_NUM,DEPT_CODE,PROF_OFFICE,PROF_EXTENSION,PROF_HIGH_DEGREE)
+# STUDENT(STU_NUM,STU_LNAME,STU_FNAME,STU_INIT,STU_DOB,STU_HRS,STU_CLASS,STU_GPA,STU_TRANSFER,DEPT_CODE,STU_PHONE,PROF_NUM)
+#
+### Find the name of department that offers the class whose description has the word "Statistics".
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables COURSE,DEPARTMENT,and join them on COURSE.DEPT_CODE = DEPARTMENT.DEPT_CODE.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns DEPT_NAME.No aggregation function is required on column DEPT_NAME.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: COURSE.CRS_DESCRIPTION like "%Statistics%".
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T2.dept_name FROM course AS T1 JOIN department AS T2 ON T1.dept_code  =  T2.dept_code WHERE T1.crs_description LIKE '%Statistics%'
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Course_Authors_and_Tutors(author_id,author_tutor_ATB,login_name,password,personal_name,middle_name,family_name,gender_mf,address_line_1)
+# Students(student_id,date_of_registration,date_of_latest_logon,login_name,password,personal_name,middle_name,family_name)
+# Subjects(subject_id,subject_name)
+# Courses(course_id,author_id,subject_id,course_name,course_description)
+# Student_Course_Enrolment(registration_id,student_id,course_id,date_of_enrolment,date_of_completion)
+# Student_Tests_Taken(registration_id,date_test_taken,test_result)
+#
+### What are the login names used both by some course authors and some students?
+Let's think step by step:
+The problem shows that we should intersect two queries.
+Considering the first query:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Course_Authors_and_Tutors.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns login_name.No aggregation function is required on column login_name.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+Considering the second query:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Students.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns login_name.No aggregation function is required on column login_name.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT login_name FROM Course_Authors_and_Tutors INTERSECT SELECT login_name FROM Students
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# classroom(building,room_number,capacity)
+# department(dept_name,building,budget)
+# course(course_id,title,dept_name,credits)
+# instructor(ID,name,dept_name,salary)
+# section(course_id,sec_id,semester,year,building,room_number,time_slot_id)
+# teaches(ID,course_id,sec_id,semester,year)
+# student(ID,name,dept_name,tot_cred)
+# takes(ID,course_id,sec_id,semester,year,grade)
+# advisor(s_ID,i_ID)
+# time_slot(time_slot_id,day,start_hr,start_min,end_hr,end_min)
+# prereq(course_id,prereq_id)
+#
+### Which department has the lowest budget?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables department.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns dept_name.No aggregation function is required on column dept_name.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that column budget should be used for sorting,and the order is ASC.
+Analyzing the composition of the limit clause:the problem shows that there is need to limit the number of results,and the number is 1.
+So, the final output SQL statement is:
+SELECT dept_name FROM department ORDER BY budget LIMIT 1
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Addresses(address_id,line_1_number_building,town_city,zip_postcode,state_province_county,country)
+# Services(service_id,service_type_code,service_name,service_descriptio)
+# Forms(form_id,form_type_code,service_id,form_number,form_name,form_description)
+# Individuals(individual_id,individual_first_name,individual_middle_name,inidividual_phone,individual_email,individual_address,individual_last_name)
+# Organizations(organization_id,date_formed,organization_name,uk_vat_number)
+# Parties(party_id,payment_method_code,party_phone,party_email)
+# Organization_Contact_Individuals(individual_id,organization_id,date_contact_from,date_contact_to)
+# Party_Addresses(party_id,address_id,date_address_from,address_type_code,date_address_to)
+# Party_Forms(party_id,form_id,date_completion_started,form_status_code,date_fully_completed)
+# Party_Services(booking_id,customer_id,service_id,service_datetime,booking_made_date)
+#
+### Find the name of all the cities and states.
+Let's think step by step:
+The problem shows that we should union two queries.
+Considering the first query:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Addresses.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns town_city.No aggregation function is required on column town_city.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+Considering the second query:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Addresses.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns state_province_county.No aggregation function is required on column state_province_county.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT town_city FROM addresses UNION SELECT state_province_county FROM addresses
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# grapes(ID,Grape,Color)
+# appellations(No,Appelation,County,State,Area,isAVA)
+# wine(No,Grape,Winery,Appelation,State,Name,Year,Price,Score,Cases,Drink)
+#
+### What are the names of wines made from red grapes and with prices above 50?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables grapes,wine,and join them on grapes.Grape = wine.Grape.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Name.No aggregation function is required on column Name.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: grapes.Color = "Red" and wine.Price > 50.0.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T2.Name FROM Grapes AS T1 JOIN WINE AS T2 ON T1.Grape  =  T2.Grape WHERE T1.Color  =  "Red" AND T2.price  >  50
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Activity(actid,activity_name)
+# Participates_in(stuid,actid)
+# Faculty_Participates_in(FacID,actid)
+# Student(StuID,LName,Fname,Age,Sex,Major,Advisor,city_code)
+# Faculty(FacID,Lname,Fname,Rank,Sex,Phone,Room,Building)
+#
+### Who is the advisor of Linda Smith? Give me the first name and last name.
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Faculty,Student,and join them on Faculty.FacID = Student.Advisor.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Fname,Lname.No aggregation function is required on column Fname.No aggregation function is required on column Lname.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: Student.Fname = "Linda" and Student.LName = "Smith".
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T1.fname ,  T1.lname FROM Faculty AS T1 JOIN Student AS T2 ON T1.FacID  =  T2.advisor WHERE T2.fname  =  "Linda" AND T2.lname  =  "Smith"
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Student(StuID,LName,Fname,Age,Sex,Major,Advisor,city_code)
+# Dorm(dormid,dorm_name,student_capacity,gender)
+# Dorm_amenity(amenid,amenity_name)
+# Has_amenity(dormid,amenid)
+# Lives_in(stuid,dormid,room_number)
+#
+### List the first and last name of students who are not living in the city with code HKG, and sorted the results by their ages.
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Student.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Fname,LName.No aggregation function is required on column Fname.No aggregation function is required on column LName.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: Student.city_code != "HKG".
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that column Age should be used for sorting,and the order is ASC.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT fname ,  lname FROM student WHERE city_code != 'HKG' ORDER BY age

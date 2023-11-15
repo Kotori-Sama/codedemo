@@ -1,0 +1,200 @@
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# repair(repair_ID,name,Launch_Date,Notes)
+# machine(Machine_ID,Making_Year,Class,Team,Machine_series,value_points,quality_rank)
+# technician(technician_id,Name,Team,Starting_Year,Age)
+# repair_assignment(technician_id,repair_ID,Machine_ID)
+#
+### What are the names of the technicians that are assigned to repair machines with more point values than 70?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables repair_assignment,machine,technician,and join them on repair_assignment.Machine_ID = machine.Machine_ID and repair_assignment.technician_id = technician.technician_id.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Name.No aggregation function is required on column Name.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: machine.value_points > 70.0.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T3.Name FROM repair_assignment AS T1 JOIN machine AS T2 ON T1.machine_id  =  T2.machine_id JOIN technician AS T3 ON T1.technician_ID  =  T3.technician_ID WHERE T2.value_points  >  70
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# stadium(id,name,Home_Games,Average_Attendance,Total_Attendance,Capacity_Percentage)
+# game(stadium_id,id,Season,Date,Home_team,Away_team,Score,Competition)
+# injury_accident(game_id,id,Player,Injury,Number_of_matches,Source)
+#
+### What are the player name, number of matches, and information source for players who do not suffer from injury of 'Knee problem'?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables injury_accident.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Player,Number_of_matches,Source.No aggregation function is required on column Player.No aggregation function is required on column Number_of_matches.No aggregation function is required on column Source.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: injury_accident.Injury != "Knee problem".
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT player ,  number_of_matches ,  SOURCE FROM injury_accident WHERE injury != 'Knee problem'
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Songs(SongId,Title)
+# Albums(AId,Title,Year,Label,Type)
+# Band(Id,Firstname,Lastname)
+# Instruments(SongId,BandmateId,Instrument)
+# Performance(SongId,Bandmate,StagePosition)
+# Tracklists(AlbumId,Position,SongId)
+# Vocals(SongId,Bandmate,Type)
+#
+### What are the names of the songs by the artist whose last name is "Heilo"?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Performance,Band,Songs,and join them on Performance.Bandmate = Band.Id and Songs.SongId = Performance.SongId.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Title.No aggregation function is required on column Title.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: Band.Lastname = "Heilo".
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T3.Title FROM Performance AS T1 JOIN Band AS T2 ON T1.bandmate  =  T2.id JOIN Songs AS T3 ON T3.SongId  =  T1.SongId WHERE T2.Lastname  =  "Heilo"
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# city(City_ID,City,Hanzi,Hanyu_Pinyin,Regional_Population,GDP)
+# match(Match_ID,Date,Venue,Score,Result,Competition)
+# temperature(City_ID,Jan,Feb,Mar,Apr,Jun,Jul,Aug,Sep,Oct,Nov,Dec)
+# hosting_city(Year,Match_ID,Host_City)
+#
+### Give me a list of cities whose temperature in March is lower than that in July or higher than that in Oct?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables city,temperature,and join them on city.City_ID = temperature.City_ID.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns City.No aggregation function is required on column City.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: temperature.Mar < temperature.Jul.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T1.city FROM city AS T1 JOIN temperature AS T2 ON T1.city_id  =  T2.city_id WHERE T2.Mar  <  T2.Jul OR T2.Mar  >  T2.Oct
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Customers(customer_id,customer_name,customer_details)
+# Invoices(invoice_number,invoice_date,invoice_details)
+# Orders(order_id,customer_id,order_status,date_order_placed,order_details)
+# Products(product_id,product_name,product_details)
+# Order_Items(order_item_id,product_id,order_id,order_item_status,order_item_details)
+# Shipments(shipment_id,order_id,invoice_number,shipment_tracking_number,shipment_date,other_shipment_details)
+# Shipment_Items(shipment_id,order_item_id)
+#
+### Which order has the most recent shipment? Give me the order id.
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Shipments.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns order_id.No aggregation function is required on column order_id.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: Shipments.shipment_date = {'from': {'table_units': [['table_unit', 5]], 'conds': []}, 'select': [False, [[1, [0, [0, 24, False], None]]]], 'where': [], 'groupBy': [], 'having': [], 'orderBy': [], 'limit': None, 'intersect': None, 'union': None, 'except': None}.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT order_id FROM shipments WHERE shipment_date  =  (SELECT max(shipment_date) FROM shipments)
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# classroom(building,room_number,capacity)
+# department(dept_name,building,budget)
+# course(course_id,title,dept_name,credits)
+# instructor(ID,name,dept_name,salary)
+# section(course_id,sec_id,semester,year,building,room_number,time_slot_id)
+# teaches(ID,course_id,sec_id,semester,year)
+# student(ID,name,dept_name,tot_cred)
+# takes(ID,course_id,sec_id,semester,year,grade)
+# advisor(s_ID,i_ID)
+# time_slot(time_slot_id,day,start_hr,start_min,end_hr,end_min)
+# prereq(course_id,prereq_id)
+#
+### What is the title of the course with Differential Geometry as a prerequisite?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables course.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns title.No aggregation function is required on column title.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: course.course_id in {'from': {'table_units': [['table_unit', 10], ['table_unit', 2]], 'conds': [[False, 2, [0, [0, 46, False], None], [0, 7, False], None]]}, 'select': [False, [[0, [0, [0, 45, False], None]]]], 'where': [[False, 2, [0, [0, 8, False], None], '"Differential Geometry"', None]], 'groupBy': [], 'having': [], 'orderBy': [], 'limit': None, 'intersect': None, 'union': None, 'except': None}.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT title FROM course WHERE course_id IN (SELECT T1.course_id FROM prereq AS T1 JOIN course AS T2 ON T1.prereq_id  =  T2.course_id WHERE T2.title  =  'Differential Geometry')
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# genre(g_name,rating,most_popular_in)
+# artist(artist_name,country,gender,preferred_genre)
+# files(f_id,artist_name,file_size,duration,formats)
+# song(song_name,artist_name,country,f_id,genre_is,rating,languages,releasedate,resolution)
+#
+### How many artists are from Bangladesh?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables artist.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns *.There should be an aggregation function for count on column *.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: artist.country = "Bangladesh".
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT count(*) FROM artist WHERE country  =  "Bangladesh"
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Student(StuID,LName,Fname,Age,Sex,Major,Advisor,city_code)
+# Voting_record(StuID,Registration_Date,Election_Cycle,President_Vote,Vice_President_Vote,Secretary_Vote,Treasurer_Vote,Class_President_Vote,Class_Senator_Vote)
+#
+### For each advisor, report the total number of students advised by him or her.
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Student.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Advisor,*.No aggregation function is required on column Advisor.There should be an aggregation function for count on column *.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that column Advisor should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT Advisor ,  count(*) FROM STUDENT GROUP BY Advisor
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# Course_Authors_and_Tutors(author_id,author_tutor_ATB,login_name,password,personal_name,middle_name,family_name,gender_mf,address_line_1)
+# Students(student_id,date_of_registration,date_of_latest_logon,login_name,password,personal_name,middle_name,family_name)
+# Subjects(subject_id,subject_name)
+# Courses(course_id,author_id,subject_id,course_name,course_description)
+# Student_Course_Enrolment(registration_id,student_id,course_id,date_of_enrolment,date_of_completion)
+# Student_Tests_Taken(registration_id,date_test_taken,test_result)
+#
+### What is the date of enrollment of the course named "Spanish"?
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables Courses,Student_Course_Enrolment,and join them on Courses.course_id = Student_Course_Enrolment.course_id.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns date_of_enrolment.No aggregation function is required on column date_of_enrolment.
+Analyzing the composition of the where clause, the problem shows that the limiting conditions should be: Courses.course_name = "Spanish".
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT T2.date_of_enrolment FROM Courses AS T1 JOIN Student_Course_Enrolment AS T2 ON T1.course_id  =  T2.course_id WHERE T1.course_name  =  "Spanish"
+
+### Complete sqlite SQL query
+### SQLite SQL tables , with their properties:
+#
+# party(Party_ID,Party_Theme,Location,First_year,Last_year,Number_of_hosts)
+# host(Host_ID,Name,Nationality,Age)
+# party_host(Party_ID,Host_ID,Is_Main_in_Charge)
+#
+### Compute the average number of hosts for parties.
+Let's think step by step:
+Analyzing the composition of the from clause, based on the problem information, we should choose tables party.
+Analyzing the composition of the select clause, the problem shows that the user wants to query information for columns Number_of_hosts.There should be an aggregation function for avg on column Number_of_hosts.
+Analyzing the composition of the where clause, the problem shows that no limiting conditions are required.
+Analyzing the composition of the group by clause:The problem shows that no columns should be used for grouping.
+Analyzing the composition of the order by clause:The problem shows that no columns should be used for sorting.
+Analyzing the composition of the limit clause:the problem shows that there is no need to limit the number of results.
+So, the final output SQL statement is:
+SELECT avg(Number_of_hosts) FROM party
