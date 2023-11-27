@@ -65,6 +65,9 @@
                 1,
                 "Home Town"
             ]
+        ],
+        "str_fk_list": [
+            "perpetrator.People_ID -> people.People_ID"
         ]
     },
     "college_2": {
@@ -283,6 +286,28 @@
                 10,
                 "prereq_id"
             ]
+        ],
+        "str_fk_list": [
+            "course.dept_name -> department.dept_name",
+            "instructor.dept_name -> department.dept_name",
+            "section.building -> classroom.building",
+            "section.room_number -> classroom.room_number",
+            "section.course_id -> course.course_id",
+            "teaches.ID -> instructor.ID",
+            "teaches.course_id -> section.course_id",
+            "teaches.sec_id -> section.sec_id",
+            "teaches.semester -> section.semester",
+            "teaches.year -> section.year",
+            "student.dept_name -> department.dept_name",
+            "takes.ID -> student.ID",
+            "takes.course_id -> section.course_id",
+            "takes.sec_id -> section.sec_id",
+            "takes.semester -> section.semester",
+            "takes.year -> section.year",
+            "advisor.s_ID -> student.ID",
+            "advisor.i_ID -> instructor.ID",
+            "prereq.prereq_id -> course.course_id",
+            "prereq.course_id -> course.course_id"
         ]
     },
     "flight_company": {
@@ -381,6 +406,10 @@
                 2,
                 "company_id"
             ]
+        ],
+        "str_fk_list": [
+            "flight.company_id -> operate_company.id",
+            "flight.airport_id -> airport.id"
         ]
     },
     "icfp_1": {
@@ -449,6 +478,11 @@
                 3,
                 "authOrder"
             ]
+        ],
+        "str_fk_list": [
+            "Authorship.paperID -> Papers.paperID",
+            "Authorship.instID -> Inst.instID",
+            "Authorship.authID -> Authors.authID"
         ]
     },
     "body_builder": {
@@ -509,6 +543,9 @@
                 1,
                 "Birth_Place"
             ]
+        ],
+        "str_fk_list": [
+            "body_builder.People_ID -> people.People_ID"
         ]
     },
     "storm_record": {
@@ -575,6 +612,10 @@
                 2,
                 "Number_city_affected"
             ]
+        ],
+        "str_fk_list": [
+            "affected_region.Storm_ID -> storm.Storm_ID",
+            "affected_region.Region_id -> region.Region_id"
         ]
     },
     "pilot_record": {
@@ -669,6 +710,10 @@
                 2,
                 "Date"
             ]
+        ],
+        "str_fk_list": [
+            "pilot_record.Aircraft_ID -> aircraft.Aircraft_ID",
+            "pilot_record.Pilot_ID -> pilot.Pilot_ID"
         ]
     },
     "race_track": {
@@ -725,6 +770,9 @@
                 1,
                 "Year_Opened"
             ]
+        ],
+        "str_fk_list": [
+            "race.Track_ID -> track.Track_ID"
         ]
     },
     "department_store": {
@@ -989,6 +1037,21 @@
                 13,
                 "date_assigned_to"
             ]
+        ],
+        "str_fk_list": [
+            "Supplier_Addresses.supplier_id -> Suppliers.supplier_id",
+            "Supplier_Addresses.address_id -> Addresses.address_id",
+            "Customer_Addresses.customer_id -> Customers.customer_id",
+            "Customer_Addresses.address_id -> Addresses.address_id",
+            "Customer_Orders.customer_id -> Customers.customer_id",
+            "Department_Stores.dept_store_chain_id -> Department_Store_Chain.dept_store_chain_id",
+            "Departments.dept_store_id -> Department_Stores.dept_store_id",
+            "Order_Items.product_id -> Products.product_id",
+            "Order_Items.order_id -> Customer_Orders.order_id",
+            "Product_Suppliers.product_id -> Products.product_id",
+            "Product_Suppliers.supplier_id -> Suppliers.supplier_id",
+            "Staff_Department_Assignments.staff_id -> Staff.staff_id",
+            "Staff_Department_Assignments.department_id -> Departments.department_id"
         ]
     },
     "music_4": {
@@ -1075,6 +1138,10 @@
                 2,
                 "Result"
             ]
+        ],
+        "str_fk_list": [
+            "volume.Artist_ID -> artist.Artist_ID",
+            "music_festival.Volume -> volume.Volume_ID"
         ]
     },
     "insurance_fnol": {
@@ -1189,6 +1256,15 @@
                 6,
                 "Settlement_Amount"
             ]
+        ],
+        "str_fk_list": [
+            "Customers_Policies.Policy_ID -> Available_Policies.Policy_ID",
+            "Customers_Policies.Customer_ID -> Customers.Customer_ID",
+            "First_Notification_of_Loss.Customer_ID -> Customers_Policies.Customer_ID",
+            "First_Notification_of_Loss.Policy_ID -> Customers_Policies.Policy_ID",
+            "First_Notification_of_Loss.Service_ID -> Services.Service_ID",
+            "Claims.FNOL_ID -> First_Notification_of_Loss.FNOL_ID",
+            "Settlements.Claim_ID -> Claims.Claim_ID"
         ]
     },
     "cinema": {
@@ -1275,6 +1351,10 @@
                 2,
                 "Price"
             ]
+        ],
+        "str_fk_list": [
+            "schedule.Cinema_ID -> cinema.Cinema_ID",
+            "schedule.Film_ID -> film.Film_ID"
         ]
     },
     "decoration_competition": {
@@ -1341,6 +1421,10 @@
                 2,
                 "Rank_in_Round"
             ]
+        ],
+        "str_fk_list": [
+            "member.College_ID -> college.College_ID",
+            "round.Member_ID -> member.Member_ID"
         ]
     },
     "phone_market": {
@@ -1411,6 +1495,10 @@
                 2,
                 "Num_of_stock"
             ]
+        ],
+        "str_fk_list": [
+            "phone_market.Phone_ID -> phone.Phone_ID",
+            "phone_market.Market_ID -> market.Market_ID"
         ]
     },
     "store_product": {
@@ -1521,6 +1609,11 @@
                 4,
                 "District_ID"
             ]
+        ],
+        "str_fk_list": [
+            "store_product.Store_ID -> store.Store_ID",
+            "store_district.District_ID -> district.District_ID",
+            "store_district.Store_ID -> store.Store_ID"
         ]
     },
     "assets_maintenance": {
@@ -1817,6 +1910,26 @@
                 13,
                 "skill_id"
             ]
+        ],
+        "str_fk_list": [
+            "Maintenance_Contracts.maintenance_contract_company_id -> Third_Party_Companies.company_id",
+            "Assets.supplier_company_id -> Third_Party_Companies.company_id",
+            "Assets.maintenance_contract_id -> Maintenance_Contracts.maintenance_contract_id",
+            "Asset_Parts.asset_id -> Assets.asset_id",
+            "Asset_Parts.part_id -> Parts.part_id",
+            "Maintenance_Engineers.company_id -> Third_Party_Companies.company_id",
+            "Engineer_Skills.skill_id -> Skills.skill_id",
+            "Engineer_Skills.engineer_id -> Maintenance_Engineers.engineer_id",
+            "Fault_Log.recorded_by_staff_id -> Staff.staff_id",
+            "Fault_Log.asset_id -> Assets.asset_id",
+            "Engineer_Visits.contact_staff_id -> Staff.staff_id",
+            "Engineer_Visits.engineer_id -> Maintenance_Engineers.engineer_id",
+            "Engineer_Visits.fault_log_entry_id -> Fault_Log.fault_log_entry_id",
+            "Part_Faults.part_id -> Parts.part_id",
+            "Fault_Log_Parts.fault_log_entry_id -> Fault_Log.fault_log_entry_id",
+            "Fault_Log_Parts.part_fault_id -> Part_Faults.part_fault_id",
+            "Skills_Required_To_Fix.skill_id -> Skills.skill_id",
+            "Skills_Required_To_Fix.part_fault_id -> Part_Faults.part_fault_id"
         ]
     },
     "student_assessment": {
@@ -1999,6 +2112,17 @@
                 8,
                 "asessment_outcome_code"
             ]
+        ],
+        "str_fk_list": [
+            "Students.student_id -> People.person_id",
+            "People_Addresses.address_id -> Addresses.address_id",
+            "People_Addresses.person_id -> People.person_id",
+            "Student_Course_Registrations.course_id -> Courses.course_id",
+            "Student_Course_Registrations.student_id -> Students.student_id",
+            "Student_Course_Attendance.student_id -> Student_Course_Registrations.student_id",
+            "Student_Course_Attendance.course_id -> Student_Course_Registrations.course_id",
+            "Candidates.candidate_id -> People.person_id",
+            "Candidate_Assessments.candidate_id -> Candidates.candidate_id"
         ]
     },
     "music_1": {
@@ -2103,6 +2227,13 @@
                 3,
                 "resolution"
             ]
+        ],
+        "str_fk_list": [
+            "artist.preferred_genre -> genre.g_name",
+            "files.artist_name -> artist.artist_name",
+            "song.genre_is -> genre.g_name",
+            "song.f_id -> files.f_id",
+            "song.artist_name -> artist.artist_name"
         ]
     },
     "company_employee": {
@@ -2185,6 +2316,10 @@
                 2,
                 "Year_working"
             ]
+        ],
+        "str_fk_list": [
+            "employment.People_ID -> people.People_ID",
+            "employment.Company_ID -> company.Company_ID"
         ]
     },
     "farm": {
@@ -2301,6 +2436,11 @@
                 3,
                 "Rank"
             ]
+        ],
+        "str_fk_list": [
+            "farm_competition.Host_city_ID -> city.City_ID",
+            "competition_record.Farm_ID -> farm.Farm_ID",
+            "competition_record.Competition_ID -> farm_competition.Competition_ID"
         ]
     },
     "solvency_ii": {
@@ -2465,6 +2605,18 @@
                 11,
                 "Event_ID"
             ]
+        ],
+        "str_fk_list": [
+            "Events.Finance_ID -> Finances.Finance_ID",
+            "Events.Address_ID -> Addresses.Address_ID",
+            "Events.Location_ID -> Locations.Location_ID",
+            "Products_in_Events.Product_ID -> Products.Product_ID",
+            "Products_in_Events.Event_ID -> Events.Event_ID",
+            "Parties_in_Events.Event_ID -> Events.Event_ID",
+            "Parties_in_Events.Party_ID -> Parties.Party_ID",
+            "Agreements.Event_ID -> Events.Event_ID",
+            "Assets_in_Events.Event_ID -> Events.Event_ID",
+            "Assets_in_Events.Event_ID -> Events.Event_ID"
         ]
     },
     "city_record": {
@@ -2593,6 +2745,11 @@
                 3,
                 "Host_City"
             ]
+        ],
+        "str_fk_list": [
+            "temperature.City_ID -> city.City_ID",
+            "hosting_city.Match_ID -> match.Match_ID",
+            "hosting_city.Host_City -> city.City_ID"
         ]
     },
     "swimming": {
@@ -2713,6 +2870,11 @@
                 3,
                 "Event_ID"
             ]
+        ],
+        "str_fk_list": [
+            "event.Stadium_ID -> stadium.ID",
+            "record.Swimmer_ID -> swimmer.ID",
+            "record.Event_ID -> event.ID"
         ]
     },
     "election": {
@@ -2807,6 +2969,10 @@
                 2,
                 "Committee"
             ]
+        ],
+        "str_fk_list": [
+            "election.District -> county.County_Id",
+            "election.Party -> party.Party_ID"
         ]
     },
     "manufactory_1": {
@@ -2859,6 +3025,9 @@
                 1,
                 "Manufacturer"
             ]
+        ],
+        "str_fk_list": [
+            "Products.Manufacturer -> Manufacturers.Code"
         ]
     },
     "debate": {
@@ -2929,6 +3098,11 @@
                 2,
                 "If_Affirmative_Win"
             ]
+        ],
+        "str_fk_list": [
+            "debate_people.Negative -> people.People_ID",
+            "debate_people.Affirmative -> people.People_ID",
+            "debate_people.Debate_ID -> debate.Debate_ID"
         ]
     },
     "network_2": {
@@ -2977,6 +3151,10 @@
                 1,
                 "year"
             ]
+        ],
+        "str_fk_list": [
+            "PersonFriend.friend -> Person.name",
+            "PersonFriend.name -> Person.name"
         ]
     },
     "local_govt_in_alabama": {
@@ -3037,6 +3215,11 @@
                 3,
                 "Participant_ID"
             ]
+        ],
+        "str_fk_list": [
+            "Events.Service_ID -> Services.Service_ID",
+            "Participants_in_Events.Event_ID -> Events.Event_ID",
+            "Participants_in_Events.Participant_ID -> Participants.Participant_ID"
         ]
     },
     "climbing": {
@@ -3101,6 +3284,9 @@
                 1,
                 "Mountain_ID"
             ]
+        ],
+        "str_fk_list": [
+            "climber.Mountain_ID -> mountain.Mountain_ID"
         ]
     },
     "e_learning": {
@@ -3253,6 +3439,13 @@
                 5,
                 "test_result"
             ]
+        ],
+        "str_fk_list": [
+            "Courses.subject_id -> Subjects.subject_id",
+            "Courses.author_id -> Course_Authors_and_Tutors.author_id",
+            "Student_Course_Enrolment.student_id -> Students.student_id",
+            "Student_Course_Enrolment.course_id -> Courses.course_id",
+            "Student_Tests_Taken.registration_id -> Student_Course_Enrolment.registration_id"
         ]
     },
     "scientist_1": {
@@ -3299,6 +3492,10 @@
                 2,
                 "Project"
             ]
+        ],
+        "str_fk_list": [
+            "AssignedTo.Project -> Projects.Code",
+            "AssignedTo.Scientist -> Scientists.SSN"
         ]
     },
     "ship_1": {
@@ -3363,6 +3560,9 @@
                 1,
                 "Flag"
             ]
+        ],
+        "str_fk_list": [
+            "captain.Ship_ID -> Ship.Ship_ID"
         ]
     },
     "entertainment_awards": {
@@ -3429,6 +3629,10 @@
                 2,
                 "Result"
             ]
+        ],
+        "str_fk_list": [
+            "nomination.Festival_ID -> festival_detail.Festival_ID",
+            "nomination.Artwork_ID -> artwork.Artwork_ID"
         ]
     },
     "allergy_1": {
@@ -3495,6 +3699,10 @@
                 2,
                 "city_code"
             ]
+        ],
+        "str_fk_list": [
+            "Has_Allergy.Allergy -> Allergy_Type.Allergy",
+            "Has_Allergy.StuID -> Student.StuID"
         ]
     },
     "products_for_hire": {
@@ -3701,6 +3909,16 @@
                 6,
                 "available_yn"
             ]
+        ],
+        "str_fk_list": [
+            "Customers.coupon_id -> Discount_Coupons.coupon_id",
+            "Bookings.customer_id -> Customers.customer_id",
+            "Payments.customer_id -> Customers.customer_id",
+            "Payments.booking_id -> Bookings.booking_id",
+            "Products_Booked.product_id -> Products_for_Hire.product_id",
+            "Products_Booked.booking_id -> Bookings.booking_id",
+            "View_Product_Availability.product_id -> Products_for_Hire.product_id",
+            "View_Product_Availability.booking_id -> Bookings.booking_id"
         ]
     },
     "candidate_poll": {
@@ -3773,6 +3991,9 @@
                 1,
                 "Weight"
             ]
+        ],
+        "str_fk_list": [
+            "candidate.People_ID -> people.People_ID"
         ]
     },
     "chinook_1": {
@@ -4063,6 +4284,19 @@
                 10,
                 "UnitPrice"
             ]
+        ],
+        "str_fk_list": [
+            "Album.ArtistId -> Artist.ArtistId",
+            "Customer.SupportRepId -> Employee.EmployeeId",
+            "Employee.ReportsTo -> Employee.EmployeeId",
+            "Invoice.CustomerId -> Customer.CustomerId",
+            "InvoiceLine.TrackId -> Track.TrackId",
+            "InvoiceLine.InvoiceId -> Invoice.InvoiceId",
+            "PlaylistTrack.TrackId -> Track.TrackId",
+            "PlaylistTrack.PlaylistId -> Playlist.PlaylistId",
+            "Track.MediaTypeId -> MediaType.MediaTypeId",
+            "Track.GenreId -> Genre.GenreId",
+            "Track.AlbumId -> Album.AlbumId"
         ]
     },
     "flight_4": {
@@ -4177,6 +4411,11 @@
                 2,
                 "active"
             ]
+        ],
+        "str_fk_list": [
+            "routes.alid -> airlines.alid",
+            "routes.src_apid -> airports.apid",
+            "routes.dst_apid -> airports.apid"
         ]
     },
     "dorm_1": {
@@ -4275,6 +4514,12 @@
                 4,
                 "room_number"
             ]
+        ],
+        "str_fk_list": [
+            "Has_amenity.amenid -> Dorm_amenity.amenid",
+            "Has_amenity.dormid -> Dorm.dormid",
+            "Lives_in.dormid -> Dorm.dormid",
+            "Lives_in.stuid -> Student.StuID"
         ]
     },
     "journal_committee": {
@@ -4333,6 +4578,10 @@
                 2,
                 "Work_Type"
             ]
+        ],
+        "str_fk_list": [
+            "journal_committee.Journal_ID -> journal.Journal_ID",
+            "journal_committee.Editor_ID -> editor.Editor_ID"
         ]
     },
     "flight_1": {
@@ -4417,6 +4666,11 @@
                 3,
                 "aid"
             ]
+        ],
+        "str_fk_list": [
+            "flight.aid -> aircraft.aid",
+            "certificate.aid -> aircraft.aid",
+            "certificate.eid -> employee.eid"
         ]
     },
     "medicine_enzyme_interaction": {
@@ -4491,6 +4745,10 @@
                 2,
                 "interaction_type"
             ]
+        ],
+        "str_fk_list": [
+            "medicine_enzyme_interaction.medicine_id -> medicine.id",
+            "medicine_enzyme_interaction.enzyme_id -> enzyme.id"
         ]
     },
     "local_govt_and_lot": {
@@ -4717,6 +4975,23 @@
                 10,
                 "Location_Code"
             ]
+        ],
+        "str_fk_list": [
+            "Residents.property_id -> Properties.property_id",
+            "Services.organization_id -> Organizations.organization_id",
+            "Residents_Services.resident_id -> Residents.resident_id",
+            "Residents_Services.property_id -> Residents.property_id",
+            "Residents_Services.date_moved_in -> Residents.date_moved_in",
+            "Residents_Services.service_id -> Services.service_id",
+            "Things.organization_id -> Organizations.organization_id",
+            "Customer_Events.resident_id -> Residents.resident_id",
+            "Customer_Events.property_id -> Residents.property_id",
+            "Customer_Events.date_moved_in -> Residents.date_moved_in",
+            "Customer_Events.customer_id -> Customers.customer_id",
+            "Customer_Events.thing_id -> Things.thing_id",
+            "Customer_Event_Notes.Customer_Event_ID -> Customer_Events.Customer_Event_ID",
+            "Timed_Status_of_Things.thing_id -> Things.thing_id",
+            "Timed_Locations_of_Things.thing_id -> Things.thing_id"
         ]
     },
     "station_weather": {
@@ -4813,6 +5088,11 @@
                 3,
                 "wind_speed_mph"
             ]
+        ],
+        "str_fk_list": [
+            "route.station_id -> station.id",
+            "route.train_id -> train.id",
+            "weekly_weather.station_id -> station.id"
         ]
     },
     "shop_membership": {
@@ -4905,6 +5185,12 @@
                 3,
                 "Total_pounds"
             ]
+        ],
+        "str_fk_list": [
+            "membership_register_branch.Branch_ID -> branch.Branch_ID",
+            "membership_register_branch.Member_ID -> member.Member_ID",
+            "purchase.Branch_ID -> branch.Branch_ID",
+            "purchase.Member_ID -> member.Member_ID"
         ]
     },
     "driving_school": {
@@ -5089,6 +5375,14 @@
                 5,
                 "price"
             ]
+        ],
+        "str_fk_list": [
+            "Staff.staff_address_id -> Addresses.address_id",
+            "Customers.customer_address_id -> Addresses.address_id",
+            "Customer_Payments.customer_id -> Customers.customer_id",
+            "Lessons.customer_id -> Customers.customer_id",
+            "Lessons.staff_id -> Staff.staff_id",
+            "Lessons.vehicle_id -> Vehicles.vehicle_id"
         ]
     },
     "music_2": {
@@ -5203,6 +5497,16 @@
                 6,
                 "Type"
             ]
+        ],
+        "str_fk_list": [
+            "Instruments.BandmateId -> Band.Id",
+            "Instruments.SongId -> Songs.SongId",
+            "Performance.Bandmate -> Band.Id",
+            "Performance.SongId -> Songs.SongId",
+            "Tracklists.AlbumId -> Albums.AId",
+            "Tracklists.SongId -> Songs.SongId",
+            "Vocals.Bandmate -> Band.Id",
+            "Vocals.SongId -> Songs.SongId"
         ]
     },
     "sports_competition": {
@@ -5329,6 +5633,13 @@
                 4,
                 "Score"
             ]
+        ],
+        "str_fk_list": [
+            "club_rank.Club_ID -> club.Club_ID",
+            "player.Club_ID -> club.Club_ID",
+            "competition_result.Competition_ID -> competition.Competition_ID",
+            "competition_result.Club_ID_2 -> club.Club_ID",
+            "competition_result.Club_ID_1 -> club.Club_ID"
         ]
     },
     "railway": {
@@ -5437,6 +5748,11 @@
                 3,
                 "From_Year"
             ]
+        ],
+        "str_fk_list": [
+            "train.Railway_ID -> railway.Railway_ID",
+            "railway_manage.Railway_ID -> railway.Railway_ID",
+            "railway_manage.Manager_ID -> manager.Manager_ID"
         ]
     },
     "inn_1": {
@@ -5517,6 +5833,9 @@
                 1,
                 "Kids"
             ]
+        ],
+        "str_fk_list": [
+            "Reservations.Room -> Rooms.RoomId"
         ]
     },
     "browser_web": {
@@ -5579,6 +5898,10 @@
                 2,
                 "compatible_since_year"
             ]
+        ],
+        "str_fk_list": [
+            "accelerator_compatible_browser.browser_id -> browser.id",
+            "accelerator_compatible_browser.accelerator_id -> Web_client_accelerator.id"
         ]
     },
     "baseball_1": {
@@ -7051,6 +7374,27 @@
                 25,
                 "l"
             ]
+        ],
+        "str_fk_list": [
+            "all_star.player_id -> player.player_id",
+            "appearances.player_id -> player.player_id",
+            "appearances.team_id -> team.team_id",
+            "manager_award.player_id -> player.player_id",
+            "player_award.player_id -> player.player_id",
+            "player_award_vote.player_id -> player.player_id",
+            "batting.player_id -> player.player_id",
+            "batting_postseason.team_id -> team.team_id",
+            "batting_postseason.player_id -> player.player_id",
+            "player_college.college_id -> college.college_id",
+            "player_college.player_id -> player.player_id",
+            "fielding.player_id -> player.player_id",
+            "fielding_outfield.player_id -> player.player_id",
+            "fielding_postseason.player_id -> player.player_id",
+            "hall_of_fame.player_id -> player.player_id",
+            "home_game.park_id -> park.park_id",
+            "home_game.team_id -> team.team_id",
+            "manager.team_id -> team.team_id",
+            "manager_half.team_id -> team.team_id"
         ]
     },
     "architecture": {
@@ -7137,6 +7481,10 @@
                 2,
                 "notes"
             ]
+        ],
+        "str_fk_list": [
+            "bridge.architect_id -> architect.id",
+            "mill.architect_id -> architect.id"
         ]
     },
     "csu_1": {
@@ -7253,6 +7601,13 @@
                 5,
                 "Faculty"
             ]
+        ],
+        "str_fk_list": [
+            "csu_fees.Campus -> Campuses.Id",
+            "degrees.Campus -> Campuses.Id",
+            "discipline_enrollments.Campus -> Campuses.Id",
+            "enrollments.Campus -> Campuses.Id",
+            "faculty.Campus -> Campuses.Id"
         ]
     },
     "tracking_orders": {
@@ -7387,6 +7742,15 @@
                 6,
                 "order_item_id"
             ]
+        ],
+        "str_fk_list": [
+            "Orders.customer_id -> Customers.customer_id",
+            "Order_Items.product_id -> Products.product_id",
+            "Order_Items.order_id -> Orders.order_id",
+            "Shipments.invoice_number -> Invoices.invoice_number",
+            "Shipments.order_id -> Orders.order_id",
+            "Shipment_Items.shipment_id -> Shipments.shipment_id",
+            "Shipment_Items.order_item_id -> Order_Items.order_item_id"
         ]
     },
     "insurance_policies": {
@@ -7509,6 +7873,12 @@
                 4,
                 "Amount_Payment"
             ]
+        ],
+        "str_fk_list": [
+            "Customer_Policies.Customer_ID -> Customers.Customer_ID",
+            "Claims.Policy_ID -> Customer_Policies.Policy_ID",
+            "Settlements.Claim_ID -> Claims.Claim_ID",
+            "Payments.Settlement_ID -> Settlements.Settlement_ID"
         ]
     },
     "gas_company": {
@@ -7599,6 +7969,10 @@
                 2,
                 "Rank_of_the_Year"
             ]
+        ],
+        "str_fk_list": [
+            "station_company.Company_ID -> company.Company_ID",
+            "station_company.Station_ID -> gas_station.Station_ID"
         ]
     },
     "e_government": {
@@ -7831,6 +8205,17 @@
                 9,
                 "booking_made_date"
             ]
+        ],
+        "str_fk_list": [
+            "Forms.service_id -> Services.service_id",
+            "Organization_Contact_Individuals.individual_id -> Individuals.individual_id",
+            "Organization_Contact_Individuals.organization_id -> Organizations.organization_id",
+            "Party_Addresses.party_id -> Parties.party_id",
+            "Party_Addresses.address_id -> Addresses.address_id",
+            "Party_Forms.form_id -> Forms.form_id",
+            "Party_Forms.party_id -> Parties.party_id",
+            "Party_Services.customer_id -> Parties.party_id",
+            "Party_Services.service_id -> Services.service_id"
         ]
     },
     "school_bus": {
@@ -7905,6 +8290,10 @@
                 2,
                 "If_full_time"
             ]
+        ],
+        "str_fk_list": [
+            "school_bus.Driver_ID -> driver.Driver_ID",
+            "school_bus.School_ID -> school.School_ID"
         ]
     },
     "machine_repair": {
@@ -8001,6 +8390,11 @@
                 3,
                 "Machine_ID"
             ]
+        ],
+        "str_fk_list": [
+            "repair_assignment.Machine_ID -> machine.Machine_ID",
+            "repair_assignment.repair_ID -> repair.repair_ID",
+            "repair_assignment.technician_id -> technician.technician_id"
         ]
     },
     "theme_gallery": {
@@ -8071,6 +8465,10 @@
                 2,
                 "Attendance"
             ]
+        ],
+        "str_fk_list": [
+            "exhibition.Artist_ID -> artist.Artist_ID",
+            "exhibition_record.Exhibition_ID -> exhibition.Exhibition_ID"
         ]
     },
     "film_rank": {
@@ -8149,6 +8547,10 @@
                 2,
                 "Year"
             ]
+        ],
+        "str_fk_list": [
+            "film_market_estimation.Market_ID -> market.Market_ID",
+            "film_market_estimation.Film_ID -> film.Film_ID"
         ]
     },
     "party_people": {
@@ -8249,6 +8651,12 @@
                 3,
                 "Member_in_charge_ID"
             ]
+        ],
+        "str_fk_list": [
+            "party.Region_ID -> region.Region_ID",
+            "member.Party_ID -> party.Party_ID",
+            "party_events.Member_in_charge_ID -> member.Member_ID",
+            "party_events.Party_ID -> party.Party_ID"
         ]
     },
     "hospital_1": {
@@ -8563,6 +8971,33 @@
                 14,
                 "AssistingNurse"
             ]
+        ],
+        "str_fk_list": [
+            "Department.Head -> Physician.EmployeeID",
+            "Affiliated_With.Department -> Department.DepartmentID",
+            "Affiliated_With.Physician -> Physician.EmployeeID",
+            "Trained_In.Treatment -> Procedures.Code",
+            "Trained_In.Physician -> Physician.EmployeeID",
+            "Patient.PCP -> Physician.EmployeeID",
+            "Appointment.Physician -> Physician.EmployeeID",
+            "Appointment.PrepNurse -> Nurse.EmployeeID",
+            "Appointment.Patient -> Patient.SSN",
+            "Prescribes.Appointment -> Appointment.AppointmentID",
+            "Prescribes.Medication -> Medication.Code",
+            "Prescribes.Patient -> Patient.SSN",
+            "Prescribes.Physician -> Physician.EmployeeID",
+            "Room.BlockFloor -> Block.BlockFloor",
+            "Room.BlockCode -> Block.BlockCode",
+            "On_Call.BlockFloor -> Block.BlockFloor",
+            "On_Call.BlockCode -> Block.BlockCode",
+            "On_Call.Nurse -> Nurse.EmployeeID",
+            "Stay.Room -> Room.RoomNumber",
+            "Stay.Patient -> Patient.SSN",
+            "Undergoes.AssistingNurse -> Nurse.EmployeeID",
+            "Undergoes.Physician -> Physician.EmployeeID",
+            "Undergoes.Stay -> Stay.StayID",
+            "Undergoes.Procedures -> Procedures.Code",
+            "Undergoes.Patient -> Patient.SSN"
         ]
     },
     "customers_campaigns_ecommerce": {
@@ -8759,6 +9194,15 @@
                 7,
                 "item_order_quantity"
             ]
+        ],
+        "str_fk_list": [
+            "Customer_Addresses.customer_id -> Customers.customer_id",
+            "Customer_Addresses.premise_id -> Premises.premise_id",
+            "Customer_Orders.customer_id -> Customers.customer_id",
+            "Mailshot_Customers.mailshot_id -> Mailshot_Campaigns.mailshot_id",
+            "Mailshot_Customers.customer_id -> Customers.customer_id",
+            "Order_Items.order_id -> Customer_Orders.order_id",
+            "Order_Items.product_id -> Products.product_id"
         ]
     },
     "gymnast": {
@@ -8827,6 +9271,9 @@
                 1,
                 "Hometown"
             ]
+        ],
+        "str_fk_list": [
+            "gymnast.Gymnast_ID -> people.People_ID"
         ]
     },
     "mountain_photos": {
@@ -8909,6 +9356,10 @@
                 2,
                 "name"
             ]
+        ],
+        "str_fk_list": [
+            "photos.mountain_id -> mountain.id",
+            "photos.camera_lens_id -> camera_lens.id"
         ]
     },
     "cre_Doc_Control_Systems": {
@@ -9083,6 +9534,21 @@
                 10,
                 "mailing_date"
             ]
+        ],
+        "str_fk_list": [
+            "Documents.shipping_agent_code -> Ref_Shipping_Agents.shipping_agent_code",
+            "Documents.document_status_code -> Ref_Document_Status.document_status_code",
+            "Documents.document_type_code -> Ref_Document_Types.document_type_code",
+            "Employees.role_code -> Roles.role_code",
+            "Document_Drafts.document_id -> Documents.document_id",
+            "Draft_Copies.document_id -> Document_Drafts.document_id",
+            "Draft_Copies.draft_number -> Document_Drafts.draft_number",
+            "Circulation_History.employee_id -> Employees.employee_id",
+            "Circulation_History.document_id -> Draft_Copies.document_id",
+            "Circulation_History.draft_number -> Draft_Copies.draft_number",
+            "Circulation_History.copy_number -> Draft_Copies.copy_number",
+            "Documents_Mailed.mailed_to_address_id -> Addresses.address_id",
+            "Documents_Mailed.document_id -> Documents.document_id"
         ]
     },
     "tracking_share_transactions": {
@@ -9189,6 +9655,15 @@
                 6,
                 "lot_id"
             ]
+        ],
+        "str_fk_list": [
+            "Lots.investor_id -> Investors.investor_id",
+            "Transactions.transaction_type_code -> Ref_Transaction_Types.transaction_type_code",
+            "Transactions.investor_id -> Investors.investor_id",
+            "Sales.sales_transaction_id -> Transactions.transaction_id",
+            "Purchases.purchase_transaction_id -> Transactions.transaction_id",
+            "Transactions_Lots.transaction_id -> Transactions.transaction_id",
+            "Transactions_Lots.lot_id -> Lots.lot_id"
         ]
     },
     "apartment_rentals": {
@@ -9337,6 +9812,14 @@
                 5,
                 "available_yn"
             ]
+        ],
+        "str_fk_list": [
+            "Apartments.building_id -> Apartment_Buildings.building_id",
+            "Apartment_Facilities.apt_id -> Apartments.apt_id",
+            "Apartment_Bookings.guest_id -> Guests.guest_id",
+            "Apartment_Bookings.apt_id -> Apartments.apt_id",
+            "View_Unit_Status.apt_booking_id -> Apartment_Bookings.apt_booking_id",
+            "View_Unit_Status.apt_id -> Apartments.apt_id"
         ]
     },
     "cre_Docs_and_Epenses": {
@@ -9451,6 +9934,14 @@
                 6,
                 "Account_Details"
             ]
+        ],
+        "str_fk_list": [
+            "Documents.Project_ID -> Projects.Project_ID",
+            "Documents.Document_Type_Code -> Ref_Document_Types.Document_Type_Code",
+            "Statements.Statement_ID -> Documents.Document_ID",
+            "Documents_with_Expenses.Document_ID -> Documents.Document_ID",
+            "Documents_with_Expenses.Budget_Type_Code -> Ref_Budget_Codes.Budget_Type_Code",
+            "Accounts.Statement_ID -> Statements.Statement_ID"
         ]
     },
     "ship_mission": {
@@ -9515,6 +10006,9 @@
                 1,
                 "Tonnage"
             ]
+        ],
+        "str_fk_list": [
+            "mission.Ship_ID -> ship.Ship_ID"
         ]
     },
     "company_office": {
@@ -9601,6 +10095,10 @@
                 2,
                 "move_in_year"
             ]
+        ],
+        "str_fk_list": [
+            "Office_locations.company_id -> Companies.id",
+            "Office_locations.building_id -> buildings.id"
         ]
     },
     "tracking_software_problems": {
@@ -9737,6 +10235,15 @@
                 5,
                 "other_problem_details"
             ]
+        ],
+        "str_fk_list": [
+            "Problem_Log.problem_status_code -> Problem_Status_Codes.problem_status_code",
+            "Problem_Log.problem_id -> Problems.problem_id",
+            "Problem_Log.assigned_to_staff_id -> Staff.staff_id",
+            "Problem_Log.problem_category_code -> Problem_Category_Codes.problem_category_code",
+            "Problems.reported_by_staff_id -> Staff.staff_id",
+            "Problems.product_id -> Product.product_id",
+            "Problems.closure_authorised_by_staff_id -> Staff.staff_id"
         ]
     },
     "products_gen_characteristics": {
@@ -9853,6 +10360,13 @@
                 5,
                 "product_characteristic_value"
             ]
+        ],
+        "str_fk_list": [
+            "Characteristics.characteristic_type_code -> Ref_Characteristic_Types.characteristic_type_code",
+            "Products.color_code -> Ref_Colors.color_code",
+            "Products.product_category_code -> Ref_Product_Categories.product_category_code",
+            "Product_Characteristics.product_id -> Products.product_id",
+            "Product_Characteristics.characteristic_id -> Characteristics.characteristic_id"
         ]
     },
     "coffee_shop": {
@@ -9949,6 +10463,10 @@
                 3,
                 "Total_amount"
             ]
+        ],
+        "str_fk_list": [
+            "happy_hour.Shop_ID -> shop.Shop_ID",
+            "happy_hour_member.Member_ID -> member.Member_ID"
         ]
     },
     "riding_club": {
@@ -10079,6 +10597,12 @@
                 4,
                 "Points"
             ]
+        ],
+        "str_fk_list": [
+            "coach.Club_ID -> club.Club_ID",
+            "player_coach.Coach_ID -> coach.Coach_ID",
+            "player_coach.Player_ID -> player.Player_ID",
+            "match_result.Club_ID -> club.Club_ID"
         ]
     },
     "customers_card_transactions": {
@@ -10207,6 +10731,10 @@
                 3,
                 "other_transaction_details"
             ]
+        ],
+        "str_fk_list": [
+            "Financial_Transactions.account_id -> Accounts.account_id",
+            "Financial_Transactions.card_id -> Customers_Cards.card_id"
         ]
     },
     "county_public_safety": {
@@ -10295,6 +10823,9 @@
                 1,
                 "Hispanic"
             ]
+        ],
+        "str_fk_list": [
+            "city.County_ID -> county_public_safety.County_ID"
         ]
     },
     "performance_attendance": {
@@ -10361,6 +10892,10 @@
                 2,
                 "Num_of_Pieces"
             ]
+        ],
+        "str_fk_list": [
+            "member_attendance.Performance_ID -> performance.Performance_ID",
+            "member_attendance.Member_ID -> member.Member_ID"
         ]
     },
     "club_1": {
@@ -10439,6 +10974,10 @@
                 2,
                 "Position"
             ]
+        ],
+        "str_fk_list": [
+            "Member_of_club.ClubID -> Club.ClubID",
+            "Member_of_club.StuID -> Student.StuID"
         ]
     },
     "culture_company": {
@@ -10533,6 +11072,10 @@
                 2,
                 "movie_id"
             ]
+        ],
+        "str_fk_list": [
+            "culture_company.movie_id -> movie.movie_id",
+            "culture_company.book_club_id -> book_club.book_club_id"
         ]
     },
     "musical": {
@@ -10601,6 +11144,9 @@
                 1,
                 "age"
             ]
+        ],
+        "str_fk_list": [
+            "actor.Musical_ID -> actor.Actor_ID"
         ]
     },
     "device": {
@@ -10675,6 +11221,10 @@
                 2,
                 "Quantity"
             ]
+        ],
+        "str_fk_list": [
+            "stock.Device_ID -> device.Device_ID",
+            "stock.Shop_ID -> shop.Shop_ID"
         ]
     },
     "tracking_grants_for_research": {
@@ -10879,6 +11429,19 @@
                 11,
                 "eg Agree Objectives"
             ]
+        ],
+        "str_fk_list": [
+            "Documents.grant_id -> Grants.grant_id",
+            "Documents.document_type_code -> Document_Types.document_type_code",
+            "Grants.organisation_id -> Organisations.organisation_id",
+            "Organisations.organisation_type -> Organisation_Types.organisation_type",
+            "Project_Outcomes.outcome_code -> Research_Outcomes.outcome_code",
+            "Project_Outcomes.project_id -> Projects.project_id",
+            "Project_Staff.role_code -> Staff_Roles.role_code",
+            "Project_Staff.project_id -> Projects.project_id",
+            "Projects.organisation_id -> Organisations.organisation_id",
+            "Research_Staff.employer_organisation_id -> Organisations.organisation_id",
+            "Tasks.project_id -> Projects.project_id"
         ]
     },
     "movie_1": {
@@ -10937,6 +11500,10 @@
                 2,
                 "ratingDate"
             ]
+        ],
+        "str_fk_list": [
+            "Rating.rID -> Reviewer.rID",
+            "Rating.mID -> Movie.mID"
         ]
     },
     "program_share": {
@@ -11025,6 +11592,12 @@
                 3,
                 "Share_in_percent"
             ]
+        ],
+        "str_fk_list": [
+            "broadcast.Program_ID -> program.Program_ID",
+            "broadcast.Channel_ID -> channel.Channel_ID",
+            "broadcast_share.Program_ID -> program.Program_ID",
+            "broadcast_share.Channel_ID -> channel.Channel_ID"
         ]
     },
     "aircraft": {
@@ -11159,6 +11732,12 @@
                 4,
                 "Aircraft_ID"
             ]
+        ],
+        "str_fk_list": [
+            "match.Winning_Pilot -> pilot.Pilot_Id",
+            "match.Winning_Aircraft -> aircraft.Aircraft_ID",
+            "airport_aircraft.Aircraft_ID -> aircraft.Aircraft_ID",
+            "airport_aircraft.Airport_ID -> airport.Airport_ID"
         ]
     },
     "restaurant_1": {
@@ -11265,6 +11844,12 @@
                 4,
                 "Spent"
             ]
+        ],
+        "str_fk_list": [
+            "Type_Of_Restaurant.ResTypeID -> Restaurant_Type.ResTypeID",
+            "Type_Of_Restaurant.ResID -> Restaurant.ResID",
+            "Visits_Restaurant.ResID -> Restaurant.ResID",
+            "Visits_Restaurant.StuID -> Student.StuID"
         ]
     },
     "customers_and_invoices": {
@@ -11519,6 +12104,19 @@
                 8,
                 "derived_total_cost"
             ]
+        ],
+        "str_fk_list": [
+            "Orders.customer_id -> Customers.customer_id",
+            "Invoices.order_id -> Orders.order_id",
+            "Accounts.customer_id -> Customers.customer_id",
+            "Products.production_type_code -> Product_Categories.production_type_code",
+            "Financial_Transactions.account_id -> Accounts.account_id",
+            "Financial_Transactions.invoice_number -> Invoices.invoice_number",
+            "Order_Items.order_id -> Orders.order_id",
+            "Order_Items.product_id -> Products.product_id",
+            "Invoice_Line_Items.product_id -> Products.product_id",
+            "Invoice_Line_Items.invoice_number -> Invoices.invoice_number",
+            "Invoice_Line_Items.order_item_id -> Order_Items.order_item_id"
         ]
     },
     "insurance_and_eClaims": {
@@ -11665,6 +12263,14 @@
                 6,
                 "Staff_ID"
             ]
+        ],
+        "str_fk_list": [
+            "Policies.Customer_ID -> Customers.Customer_ID",
+            "Claim_Headers.Policy_ID -> Policies.Policy_ID",
+            "Claims_Documents.Created_by_Staff_ID -> Staff.Staff_ID",
+            "Claims_Documents.Claim_ID -> Claim_Headers.Claim_Header_ID",
+            "Claims_Processing.Staff_ID -> Staff.Staff_ID",
+            "Claims_Processing.Claim_ID -> Claim_Headers.Claim_Header_ID"
         ]
     },
     "college_1": {
@@ -11863,6 +12469,17 @@
                 6,
                 "PROF_NUM"
             ]
+        ],
+        "str_fk_list": [
+            "CLASS.PROF_NUM -> EMPLOYEE.EMP_NUM",
+            "CLASS.CRS_CODE -> COURSE.CRS_CODE",
+            "COURSE.DEPT_CODE -> DEPARTMENT.DEPT_CODE",
+            "DEPARTMENT.EMP_NUM -> EMPLOYEE.EMP_NUM",
+            "ENROLL.STU_NUM -> STUDENT.STU_NUM",
+            "ENROLL.CLASS_CODE -> CLASS.CLASS_CODE",
+            "PROFESSOR.DEPT_CODE -> DEPARTMENT.DEPT_CODE",
+            "PROFESSOR.EMP_NUM -> EMPLOYEE.EMP_NUM",
+            "STUDENT.DEPT_CODE -> DEPARTMENT.DEPT_CODE"
         ]
     },
     "local_govt_mdm": {
@@ -11959,6 +12576,15 @@
                 7,
                 "cmi_cross_ref_id"
             ]
+        ],
+        "str_fk_list": [
+            "CMI_Cross_References.master_customer_id -> Customer_Master_Index.master_customer_id",
+            "Council_Tax.cmi_cross_ref_id -> CMI_Cross_References.cmi_cross_ref_id",
+            "Business_Rates.cmi_cross_ref_id -> CMI_Cross_References.cmi_cross_ref_id",
+            "Benefits_Overpayments.cmi_cross_ref_id -> CMI_Cross_References.cmi_cross_ref_id",
+            "Parking_Fines.cmi_cross_ref_id -> CMI_Cross_References.cmi_cross_ref_id",
+            "Rent_Arrears.cmi_cross_ref_id -> CMI_Cross_References.cmi_cross_ref_id",
+            "Electoral_Register.cmi_cross_ref_id -> CMI_Cross_References.cmi_cross_ref_id"
         ]
     },
     "book_2": {
@@ -12011,6 +12637,9 @@
                 1,
                 "Writer"
             ]
+        ],
+        "str_fk_list": [
+            "publication.Book_ID -> book.Book_ID"
         ]
     },
     "hr_1": {
@@ -12177,6 +12806,15 @@
                 6,
                 "COUNTRY_ID"
             ]
+        ],
+        "str_fk_list": [
+            "countries.REGION_ID -> regions.REGION_ID",
+            "employees.JOB_ID -> jobs.JOB_ID",
+            "employees.DEPARTMENT_ID -> departments.DEPARTMENT_ID",
+            "job_history.JOB_ID -> jobs.JOB_ID",
+            "job_history.DEPARTMENT_ID -> departments.DEPARTMENT_ID",
+            "job_history.EMPLOYEE_ID -> employees.EMPLOYEE_ID",
+            "locations.COUNTRY_ID -> countries.COUNTRY_ID"
         ]
     },
     "soccer_1": {
@@ -12547,6 +13185,13 @@
                 6,
                 "defenceDefenderLineClass"
             ]
+        ],
+        "str_fk_list": [
+            "Player_Attributes.player_api_id -> Player.player_api_id",
+            "Player_Attributes.player_fifa_api_id -> Player.player_fifa_api_id",
+            "League.country_id -> Country.id",
+            "Team_Attributes.team_api_id -> Team.team_api_id",
+            "Team_Attributes.team_fifa_api_id -> Team.team_fifa_api_id"
         ]
     },
     "sakila_1": {
@@ -12947,6 +13592,29 @@
                 15,
                 "last_update"
             ]
+        ],
+        "str_fk_list": [
+            "address.city_id -> city.city_id",
+            "city.country_id -> country.country_id",
+            "customer.store_id -> store.store_id",
+            "customer.address_id -> address.address_id",
+            "film.original_language_id -> language.language_id",
+            "film.language_id -> language.language_id",
+            "film_actor.film_id -> film.film_id",
+            "film_actor.actor_id -> actor.actor_id",
+            "film_category.category_id -> category.category_id",
+            "film_category.film_id -> film.film_id",
+            "inventory.film_id -> film.film_id",
+            "inventory.store_id -> store.store_id",
+            "payment.staff_id -> staff.staff_id",
+            "payment.customer_id -> customer.customer_id",
+            "payment.rental_id -> rental.rental_id",
+            "rental.customer_id -> customer.customer_id",
+            "rental.inventory_id -> inventory.inventory_id",
+            "rental.staff_id -> staff.staff_id",
+            "staff.address_id -> address.address_id",
+            "store.address_id -> address.address_id",
+            "store.manager_staff_id -> staff.staff_id"
         ]
     },
     "college_3": {
@@ -13131,6 +13799,17 @@
                 7,
                 "gradepoint"
             ]
+        ],
+        "str_fk_list": [
+            "Member_of.DNO -> Department.DNO",
+            "Member_of.FacID -> Faculty.FacID",
+            "Course.DNO -> Department.DNO",
+            "Course.Instructor -> Faculty.FacID",
+            "Minor_in.DNO -> Department.DNO",
+            "Minor_in.StuID -> Student.StuID",
+            "Enrolled_in.Grade -> Gradeconversion.lettergrade",
+            "Enrolled_in.CID -> Course.CID",
+            "Enrolled_in.StuID -> Student.StuID"
         ]
     },
     "roller_coaster": {
@@ -13203,6 +13882,9 @@
                 1,
                 "Languages"
             ]
+        ],
+        "str_fk_list": [
+            "roller_coaster.Country_ID -> country.Country_ID"
         ]
     },
     "customer_deliveries": {
@@ -13445,6 +14127,23 @@
                 12,
                 "delivery_date"
             ]
+        ],
+        "str_fk_list": [
+            "Regular_Orders.distributer_id -> Customers.customer_id",
+            "Regular_Order_Products.regular_order_id -> Regular_Orders.regular_order_id",
+            "Regular_Order_Products.product_id -> Products.product_id",
+            "Actual_Orders.regular_order_id -> Regular_Orders.regular_order_id",
+            "Actual_Order_Products.actual_order_id -> Actual_Orders.actual_order_id",
+            "Actual_Order_Products.product_id -> Products.product_id",
+            "Customer_Addresses.address_id -> Addresses.address_id",
+            "Customer_Addresses.customer_id -> Customers.customer_id",
+            "Delivery_Route_Locations.route_id -> Delivery_Routes.route_id",
+            "Delivery_Route_Locations.location_address_id -> Addresses.address_id",
+            "Employees.employee_address_id -> Addresses.address_id",
+            "Order_Deliveries.driver_employee_id -> Employees.employee_id",
+            "Order_Deliveries.location_code -> Delivery_Route_Locations.location_code",
+            "Order_Deliveries.actual_order_id -> Actual_Orders.actual_order_id",
+            "Order_Deliveries.truck_id -> Trucks.truck_id"
         ]
     },
     "game_injury": {
@@ -13543,6 +14242,10 @@
                 2,
                 "Source"
             ]
+        ],
+        "str_fk_list": [
+            "game.stadium_id -> stadium.id",
+            "injury_accident.game_id -> game.id"
         ]
     },
     "school_finance": {
@@ -13637,6 +14340,10 @@
                 2,
                 "amount"
             ]
+        ],
+        "str_fk_list": [
+            "budget.School_id -> School.School_id",
+            "endowment.School_id -> School.School_id"
         ]
     },
     "match_season": {
@@ -13741,6 +14448,11 @@
                 3,
                 "Team"
             ]
+        ],
+        "str_fk_list": [
+            "match_season.Team -> team.Team_id",
+            "match_season.Country -> country.Country_id",
+            "player.Team -> team.Team_id"
         ]
     },
     "small_bank_1": {
@@ -13783,6 +14495,10 @@
                 2,
                 "balance"
             ]
+        ],
+        "str_fk_list": [
+            "SAVINGS.custid -> ACCOUNTS.custid",
+            "CHECKING.custid -> ACCOUNTS.custid"
         ]
     },
     "student_1": {
@@ -13827,7 +14543,8 @@
                 1,
                 "Classroom"
             ]
-        ]
+        ],
+        "str_fk_list": []
     },
     "manufacturer": {
         "str_list": [
@@ -13893,6 +14610,10 @@
                 2,
                 "Price_in_Dollar"
             ]
+        ],
+        "str_fk_list": [
+            "furniture_manufacte.Furniture_ID -> furniture.Furniture_ID",
+            "furniture_manufacte.Manufacturer_ID -> manufacturer.Manufacturer_ID"
         ]
     },
     "store_1": {
@@ -14193,6 +14914,19 @@
                 11,
                 "track_id"
             ]
+        ],
+        "str_fk_list": [
+            "albums.artist_id -> artists.id",
+            "employees.reports_to -> employees.id",
+            "customers.support_rep_id -> employees.id",
+            "invoices.customer_id -> customers.id",
+            "tracks.media_type_id -> media_types.id",
+            "tracks.genre_id -> genres.id",
+            "tracks.album_id -> albums.id",
+            "invoice_lines.track_id -> tracks.id",
+            "invoice_lines.invoice_id -> invoices.id",
+            "playlist_tracks.track_id -> tracks.id",
+            "playlist_tracks.playlist_id -> playlists.id"
         ]
     },
     "train_station": {
@@ -14267,6 +15001,10 @@
                 2,
                 "Station_ID"
             ]
+        ],
+        "str_fk_list": [
+            "train_station.Station_ID -> station.Station_ID",
+            "train_station.Train_ID -> train.Train_ID"
         ]
     },
     "document_management": {
@@ -14421,6 +15159,15 @@
                 8,
                 "image_id"
             ]
+        ],
+        "str_fk_list": [
+            "Users.role_code -> Roles.role_code",
+            "Documents.document_structure_code -> Document_Structures.document_structure_code",
+            "Document_Functional_Areas.functional_area_code -> Functional_Areas.functional_area_code",
+            "Document_Functional_Areas.document_code -> Documents.document_code",
+            "Document_Sections.document_code -> Documents.document_code",
+            "Document_Sections_Images.image_id -> Images.image_id",
+            "Document_Sections_Images.section_id -> Document_Sections.section_id"
         ]
     },
     "formula_1": {
@@ -14835,6 +15582,25 @@
                 12,
                 "milliseconds"
             ]
+        ],
+        "str_fk_list": [
+            "races.circuitId -> circuits.circuitId",
+            "constructorStandings.raceId -> races.raceId",
+            "constructorStandings.constructorId -> constructors.constructorId",
+            "results.driverId -> drivers.driverId",
+            "results.raceId -> races.raceId",
+            "results.constructorId -> constructors.constructorId",
+            "driverStandings.driverId -> drivers.driverId",
+            "driverStandings.raceId -> races.raceId",
+            "constructorResults.raceId -> races.raceId",
+            "constructorResults.constructorId -> constructors.constructorId",
+            "qualifying.driverId -> drivers.driverId",
+            "qualifying.raceId -> races.raceId",
+            "qualifying.constructorId -> constructors.constructorId",
+            "pitStops.driverId -> drivers.driverId",
+            "pitStops.raceId -> races.raceId",
+            "lapTimes.driverId -> drivers.driverId",
+            "lapTimes.raceId -> races.raceId"
         ]
     },
     "game_1": {
@@ -14931,6 +15697,11 @@
                 3,
                 "OnScholarship"
             ]
+        ],
+        "str_fk_list": [
+            "Plays_Games.StuID -> Student.StuID",
+            "Plays_Games.GameID -> Video_Games.GameID",
+            "SportsInfo.StuID -> Student.StuID"
         ]
     },
     "loan_1": {
@@ -15021,6 +15792,10 @@
                 2,
                 "amount"
             ]
+        ],
+        "str_fk_list": [
+            "customer.branch_ID -> bank.branch_ID",
+            "loan.branch_ID -> bank.branch_ID"
         ]
     },
     "bike_1": {
@@ -15225,6 +16000,9 @@
                 3,
                 "zip_code"
             ]
+        ],
+        "str_fk_list": [
+            "status.station_id -> station.id"
         ]
     },
     "entrepreneur": {
@@ -15281,6 +16059,9 @@
                 1,
                 "Date_of_Birth"
             ]
+        ],
+        "str_fk_list": [
+            "entrepreneur.People_ID -> people.People_ID"
         ]
     },
     "cre_Drama_Workshop_Groups": {
@@ -15725,6 +16506,33 @@
                 17,
                 "Other_Item_Details"
             ]
+        ],
+        "str_fk_list": [
+            "Clients.Address_ID -> Addresses.Address_ID",
+            "Drama_Workshop_Groups.Address_ID -> Addresses.Address_ID",
+            "Performers.Address_ID -> Addresses.Address_ID",
+            "Customers.Address_ID -> Addresses.Address_ID",
+            "Stores.Marketing_Region_Code -> Marketing_Regions.Marketing_Region_Code",
+            "Stores.Address_ID -> Addresses.Address_ID",
+            "Bookings.Workshop_Group_ID -> Drama_Workshop_Groups.Workshop_Group_ID",
+            "Bookings.Customer_ID -> Clients.Client_ID",
+            "Performers_in_Bookings.Order_ID -> Bookings.Booking_ID",
+            "Performers_in_Bookings.Performer_ID -> Performers.Performer_ID",
+            "Customer_Orders.Store_ID -> Stores.Store_ID",
+            "Customer_Orders.Customer_ID -> Customers.Customer_ID",
+            "Order_Items.Product_ID -> Products.Product_ID",
+            "Order_Items.Order_ID -> Customer_Orders.Order_ID",
+            "Invoices.payment_method_code -> Ref_Payment_Methods.payment_method_code",
+            "Invoices.Order_ID -> Bookings.Booking_ID",
+            "Invoices.Order_ID -> Customer_Orders.Order_ID",
+            "Services.Service_Type_Code -> Ref_Service_Types.Service_Type_Code",
+            "Services.Workshop_Group_ID -> Drama_Workshop_Groups.Workshop_Group_ID",
+            "Bookings_Services.Product_ID -> Services.Service_ID",
+            "Bookings_Services.Order_ID -> Bookings.Booking_ID",
+            "Invoice_Items.Order_ID -> Bookings_Services.Order_ID",
+            "Invoice_Items.Product_ID -> Bookings_Services.Product_ID",
+            "Invoice_Items.Invoice_ID -> Invoices.Invoice_ID",
+            "Invoice_Items.Order_Item_ID -> Order_Items.Order_Item_ID"
         ]
     },
     "behavior_monitoring": {
@@ -16015,6 +16823,21 @@
                 10,
                 "incident_id"
             ]
+        ],
+        "str_fk_list": [
+            "Students.address_id -> Addresses.address_id",
+            "Teachers.address_id -> Addresses.address_id",
+            "Assessment_Notes.teacher_id -> Teachers.teacher_id",
+            "Assessment_Notes.student_id -> Students.student_id",
+            "Behavior_Incident.student_id -> Students.student_id",
+            "Behavior_Incident.incident_type_code -> Ref_Incident_Type.incident_type_code",
+            "Detention.teacher_id -> Teachers.teacher_id",
+            "Detention.detention_type_code -> Ref_Detention_Type.detention_type_code",
+            "Student_Addresses.student_id -> Students.student_id",
+            "Student_Addresses.address_id -> Addresses.address_id",
+            "Students_in_Detention.student_id -> Students.student_id",
+            "Students_in_Detention.detention_id -> Detention.detention_id",
+            "Students_in_Detention.incident_id -> Behavior_Incident.incident_id"
         ]
     },
     "cre_Doc_Tracking_DB": {
@@ -16175,6 +16998,20 @@
                 7,
                 "Other_Details"
             ]
+        ],
+        "str_fk_list": [
+            "All_Documents.Date_Stored -> Ref_Calendar.Calendar_Date",
+            "All_Documents.Document_Type_Code -> Ref_Document_Types.Document_Type_Code",
+            "Employees.Role_Code -> Roles.Role_Code",
+            "Document_Locations.Document_ID -> All_Documents.Document_ID",
+            "Document_Locations.Date_in_Locaton_To -> Ref_Calendar.Calendar_Date",
+            "Document_Locations.Date_in_Location_From -> Ref_Calendar.Calendar_Date",
+            "Document_Locations.Location_Code -> Ref_Locations.Location_Code",
+            "Documents_to_be_Destroyed.Document_ID -> All_Documents.Document_ID",
+            "Documents_to_be_Destroyed.Actual_Destruction_Date -> Ref_Calendar.Calendar_Date",
+            "Documents_to_be_Destroyed.Planned_Destruction_Date -> Ref_Calendar.Calendar_Date",
+            "Documents_to_be_Destroyed.Destruction_Authorised_by_Employee_ID -> Employees.Employee_ID",
+            "Documents_to_be_Destroyed.Destroyed_by_Employee_ID -> Employees.Employee_ID"
         ]
     },
     "university_basketball": {
@@ -16271,6 +17108,9 @@
                 1,
                 "Primary_conference"
             ]
+        ],
+        "str_fk_list": [
+            "basketball_match.School_ID -> university.School_ID"
         ]
     },
     "soccer_2": {
@@ -16333,6 +17173,10 @@
                 2,
                 "decision"
             ]
+        ],
+        "str_fk_list": [
+            "Tryout.cName -> College.cName",
+            "Tryout.pID -> Player.pID"
         ]
     },
     "activity_1": {
@@ -16443,6 +17287,12 @@
                 4,
                 "Building"
             ]
+        ],
+        "str_fk_list": [
+            "Participates_in.actid -> Activity.actid",
+            "Participates_in.stuid -> Student.StuID",
+            "Faculty_Participates_in.actid -> Activity.actid",
+            "Faculty_Participates_in.FacID -> Faculty.FacID"
         ]
     },
     "cre_Theme_park": {
@@ -16695,6 +17545,22 @@
                 15,
                 "Feature_ID"
             ]
+        ],
+        "str_fk_list": [
+            "Hotels.star_rating_code -> Ref_Hotel_Star_Ratings.star_rating_code",
+            "Tourist_Attractions.Attraction_Type_Code -> Ref_Attraction_Types.Attraction_Type_Code",
+            "Tourist_Attractions.Location_ID -> Locations.Location_ID",
+            "Street_Markets.Market_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Shops.Shop_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Museums.Museum_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Royal_Family.Royal_Family_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Theme_Parks.Theme_Park_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Visits.Tourist_ID -> Visitors.Tourist_ID",
+            "Visits.Tourist_Attraction_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Photos.Tourist_Attraction_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Staff.Tourist_Attraction_ID -> Tourist_Attractions.Tourist_Attraction_ID",
+            "Tourist_Attraction_Features.Feature_ID -> Features.Feature_ID",
+            "Tourist_Attraction_Features.Tourist_Attraction_ID -> Tourist_Attractions.Tourist_Attraction_ID"
         ]
     },
     "twitter_1": {
@@ -16757,6 +17623,11 @@
                 2,
                 "followers"
             ]
+        ],
+        "str_fk_list": [
+            "follows.f2 -> user_profiles.uid",
+            "follows.f1 -> user_profiles.uid",
+            "tweets.uid -> user_profiles.uid"
         ]
     },
     "election_representative": {
@@ -16821,6 +17692,9 @@
                 1,
                 "Lifespan"
             ]
+        ],
+        "str_fk_list": [
+            "election.Representative_ID -> representative.Representative_ID"
         ]
     },
     "voter_2": {
@@ -16905,6 +17779,15 @@
                 1,
                 "Class_Senator_Vote"
             ]
+        ],
+        "str_fk_list": [
+            "Voting_record.Class_Senator_Vote -> Student.StuID",
+            "Voting_record.Class_President_Vote -> Student.StuID",
+            "Voting_record.Treasurer_Vote -> Student.StuID",
+            "Voting_record.Secretary_Vote -> Student.StuID",
+            "Voting_record.Vice_President_Vote -> Student.StuID",
+            "Voting_record.President_Vote -> Student.StuID",
+            "Voting_record.StuID -> Student.StuID"
         ]
     },
     "wedding": {
@@ -16979,6 +17862,11 @@
                 2,
                 "Year"
             ]
+        ],
+        "str_fk_list": [
+            "wedding.Female_ID -> people.People_ID",
+            "wedding.Male_ID -> people.People_ID",
+            "wedding.Church_ID -> church.Church_ID"
         ]
     },
     "news_report": {
@@ -17049,6 +17937,10 @@
                 2,
                 "Work_Type"
             ]
+        ],
+        "str_fk_list": [
+            "news_report.Event_ID -> event.Event_ID",
+            "news_report.journalist_ID -> journalist.journalist_ID"
         ]
     },
     "wine_1": {
@@ -17147,6 +18039,10 @@
                 2,
                 "Drink"
             ]
+        ],
+        "str_fk_list": [
+            "wine.Appelation -> appellations.Appelation",
+            "wine.Grape -> grapes.Grape"
         ]
     },
     "customers_and_addresses": {
@@ -17301,6 +18197,14 @@
                 6,
                 "order_quantity"
             ]
+        ],
+        "str_fk_list": [
+            "Customer_Addresses.customer_id -> Customers.customer_id",
+            "Customer_Addresses.address_id -> Addresses.address_id",
+            "Customer_Contact_Channels.customer_id -> Customers.customer_id",
+            "Customer_Orders.customer_id -> Customers.customer_id",
+            "Order_Items.order_id -> Customer_Orders.order_id",
+            "Order_Items.product_id -> Products.product_id"
         ]
     },
     "protein_institute": {
@@ -17407,6 +18311,10 @@
                 2,
                 "Institution_id"
             ]
+        ],
+        "str_fk_list": [
+            "Institution.building_id -> building.building_id",
+            "protein.Institution_id -> Institution.Institution_id"
         ]
     },
     "school_player": {
@@ -17531,6 +18439,11 @@
                 3,
                 "School_ID"
             ]
+        ],
+        "str_fk_list": [
+            "school_details.School_ID -> school.School_ID",
+            "school_performance.School_Id -> school.School_ID",
+            "player.School_ID -> school.School_ID"
         ]
     },
     "phone_1": {
@@ -17633,6 +18546,10 @@
                 2,
                 "screen_mode"
             ]
+        ],
+        "str_fk_list": [
+            "phone.chip_model -> chip_model.Model_name",
+            "phone.screen_mode -> screen_mode.Graphics_mode"
         ]
     },
     "wrestler": {
@@ -17697,6 +18614,9 @@
                 1,
                 "Time"
             ]
+        ],
+        "str_fk_list": [
+            "Elimination.Wrestler_ID -> wrestler.Wrestler_ID"
         ]
     },
     "customer_complaints": {
@@ -17841,6 +18761,11 @@
                 3,
                 "staff_id"
             ]
+        ],
+        "str_fk_list": [
+            "Complaints.customer_id -> Customers.customer_id",
+            "Complaints.product_id -> Products.product_id",
+            "Complaints.staff_id -> Staff.staff_id"
         ]
     },
     "department_management": {
@@ -17911,6 +18836,10 @@
                 2,
                 "temporary_acting"
             ]
+        ],
+        "str_fk_list": [
+            "management.head_ID -> head.head_ID",
+            "management.department_ID -> department.Department_ID"
         ]
     },
     "customers_and_products_contacts": {
@@ -18077,6 +19006,13 @@
                 6,
                 "order_quantity"
             ]
+        ],
+        "str_fk_list": [
+            "Customer_Address_History.address_id -> Addresses.address_id",
+            "Customer_Address_History.customer_id -> Customers.customer_id",
+            "Customer_Orders.customer_id -> Customers.customer_id",
+            "Order_Items.order_id -> Customer_Orders.order_id",
+            "Order_Items.product_id -> Products.product_id"
         ]
     },
     "company_1": {
@@ -18213,7 +19149,8 @@
                 5,
                 "Dlocation"
             ]
-        ]
+        ],
+        "str_fk_list": []
     },
     "workshop_paper": {
         "str_list": [
@@ -18275,6 +19212,10 @@
                 2,
                 "Result"
             ]
+        ],
+        "str_fk_list": [
+            "Acceptance.Workshop_ID -> workshop.Workshop_ID",
+            "Acceptance.Submission_ID -> submission.Submission_ID"
         ]
     },
     "epinions_1": {
@@ -18343,6 +19284,12 @@
                 3,
                 "trust"
             ]
+        ],
+        "str_fk_list": [
+            "review.i_id -> item.i_id",
+            "review.u_id -> useracct.u_id",
+            "trust.target_u_id -> useracct.u_id",
+            "trust.source_u_id -> useracct.u_id"
         ]
     },
     "party_host": {
@@ -18413,6 +19360,10 @@
                 2,
                 "Is_Main_in_Charge"
             ]
+        ],
+        "str_fk_list": [
+            "party_host.Party_ID -> party.Party_ID",
+            "party_host.Host_ID -> host.Host_ID"
         ]
     },
     "product_catalog": {
@@ -18551,6 +19502,12 @@
                 4,
                 "attribute_value"
             ]
+        ],
+        "str_fk_list": [
+            "Catalog_Structure.catalog_id -> Catalogs.catalog_id",
+            "Catalog_Contents.catalog_level_number -> Catalog_Structure.catalog_level_number",
+            "Catalog_Contents_Additional_Attributes.catalog_level_number -> Catalog_Structure.catalog_level_number",
+            "Catalog_Contents_Additional_Attributes.catalog_entry_id -> Catalog_Contents.catalog_entry_id"
         ]
     }
 }
