@@ -77,6 +77,7 @@ PROMPT={
     'ans':'So, the final output SQL statement is:',#slot: gold spl
 
     'OpenAI':['### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables , with their properties:\n#\n','#\n### '],
+    'fk':'### The foreign key is as follows:\n',
 
     'nested':['In addition,the problem shows that the nested query is required.Considering the nested query:','\n'],
 }
@@ -437,11 +438,26 @@ def openai_prompt(db_scheme_strs,question):
     for db_str in db_scheme_strs:
         prompt_db_scheme+='# '+db_str+'\n'
     return prompt_db_scheme.join(PROMPT['OpenAI'])+question+'\n\n'
+
+
+def openai_prompt_fk(db_scheme_strs,db_scheme_fk_strs,question):
+    prompt_db_scheme=''
+    for db_str in db_scheme_strs:
+        prompt_db_scheme+='# '+db_str+'\n'
     
+    prompt_db_scheme+=PROMPT['fk']
+
+    for fk in db_scheme_fk_strs:
+        prompt_db_scheme+='# '+fk+'\n'
+        
+    return prompt_db_scheme.join(PROMPT['OpenAI'])+question+'\n\n'
+    
+
+
 
 if __name__ == '__main__':
     db_scheme_path='./data/spider/db_scheme.json'
-    train_data_path='./data/spider/train_spider.json'
+    train_data_path='./data/spider/train_spider_processed.json'
     with open(train_data_path, 'r', encoding='utf-8') as f1 :
         train_data=json.load(f1)
     with open(db_scheme_path, 'r', encoding='utf-8') as f2 :
@@ -451,10 +467,16 @@ if __name__ == '__main__':
         promt_sql=extract_sql(data,db_scheme=db_scheme[data['db_id']])
         db_scheme_strs=db_scheme[data['db_id']]['str_list']
         question=data['question']
-        openai_p=openai_prompt(db_scheme_strs,question)
-        ans.append({'text':openai_p+promt_sql})
+        db_scheme_fk_strs=db_scheme[data['db_id']]['str_fk_list']
+        openai_p=openai_prompt_fk(db_scheme_strs,db_scheme_fk_strs,question)
+        #ans.append({'text':openai_p+promt_sql})
+        openai_p_split=openai_p.split('\n')
+        ans.append({'instruction':openai_p_split[0]+'\n',
+                    'input':'\n'.join(openai_p_split[1:]),
+                    'output':data['query']
+                    })
     
-    with open('./data/train.list','w',encoding='utf-8') as f:
+    with open('./data/spider_openai_fk_data.jsonl','w',encoding='utf-8') as f:
         json.dump(ans,f,ensure_ascii=False,indent=4)
 
     
