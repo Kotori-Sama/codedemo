@@ -81,6 +81,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--train_data', type=str,default='./data/train_spider.json',help='path of train_spider.json')
     parser.add_argument('--tables', type=str,default='./data/tables.json',help='path of tables.json')
+    parser.add_argument('--db', type=str,default='./spider/database',help='path of database')
     parser.add_argument('--output_dir', type=str,default='./data/db_scheme.json',help='path of output file')
     args = parser.parse_args()
 
@@ -101,7 +102,7 @@ if __name__ == "__main__":
                     'table_names_original':db['table_names_original'],
                     'column_names_original':db['column_names_original'],
                     "str_fk_list":get_fk(db['table_names_original'],db['column_names_original'],db['foreign_keys']),
-                    "str_tuples":get_tuples(f'./spider/database/{db_id}/{db_id}.sqlite')
+                    "str_tuples":get_tuples(f'{args.db}/{db_id}/{db_id}.sqlite')
                 }
 
         with open(args.output_dir,'w',encoding='utf-8') as f3:
