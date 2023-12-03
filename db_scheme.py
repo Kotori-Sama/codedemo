@@ -79,13 +79,13 @@ def get_fk(table,column,foreign_keys):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--train_data', type=str,default='./data/train_spider.json',help='path of train_spider.json')
+    parser.add_argument('--data_dir', type=str,default='./data/train_spider.json',help='path of train_spider.json')
     parser.add_argument('--tables', type=str,default='./data/tables.json',help='path of tables.json')
     parser.add_argument('--db', type=str,default='./spider/database',help='path of database')
     parser.add_argument('--output_dir', type=str,default='./data/db_scheme.json',help='path of output file')
     args = parser.parse_args()
 
-    sample_sql_path=args.train_data
+    sample_sql_path=args.data_dir
     tables_path=args.tables
 
     with open(sample_sql_path, 'r', encoding='utf-8') as f1 :
