@@ -75,13 +75,22 @@ PROMPT={
 
     'union':['The problem shows that we should union two queries.\nConsidering the first query:\n','Considering the second query:\n'],
 
-    'ans':'So, the final output SQL statement is:',#slot: gold spl
+    'ans':'So, the final output SQL statement is:',#slot: gold sql
 
-    'OpenAI':['### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables , with their properties:\n#\n','#\n### '],
+    'OpenAI':'### Complete sqlite SQL query only and with no explanation\n### SQLite SQL tables , with their properties:\n#\n',
     'fk':'### The foreign keys are as follows:\n#\n',
     'tuple':'### The example tuples are as follows:\n#\n',
+    'tip':'### Here are some tips:\n#\n',
 
     'nested':['In addition,the problem shows that the nested query is required.Considering the nested query:','\n'],
+    
+    'tips':['When the question only asks for a certain field, there is no need to include the COUNT(*) in the SELECT statement, but instead use it in the ORDER BY clause to sort the results based on the count of that field.',
+            'Use "INTERSECT" or "EXCEPT" instead of "IN", "NOT IN", or "LEFT JOIN" when finding records that match or don’t match across two tables.',
+            'Use "DISTINCT" or "LIMIT" when necessary to avoid repetitive results or limit the number of results returned.',
+            'When using aggregation function such as max and min, be sure to use the GROUP BY keyword. Otherwise use another method using ORDER BY keyword to complete the task.',
+            'Pay attention to the columns that are used for the JOIN by using the foreign keys.',
+            'Use the database values that are explicitly mentioned in the question.',
+            'The aggregation function should not be used when it can be judged from the semantic information of the column name that the column has implemented the function of the aggregation function.']
 }
 
 def random_sample(path = './random_sample.sql'):
@@ -435,16 +444,28 @@ def extract_sql_str(sql,db_scheme,having_intersect=False,having_except=False,hav
     
     return final_ans.join(['(',')'])
     
-def openai_prompt(db_scheme_strs,question,db_scheme_fk_strs=None,db_scheme_tuple_strs=None):
+def openai_prompt(db_scheme_strs,question,
+                  db_scheme_fk_strs=None,db_scheme_tuple_strs=None,tips=False):
     prompt_db_scheme=''
+    
+    if tips:
+        prompt_db_scheme+=PROMPT['tip']
+        for tip in PROMPT['tips']:
+            prompt_db_scheme+='# '+tip+'\n'
+        prompt_db_scheme+='#\n'
+    
+    prompt_db_scheme+=PROMPT['OpenAI']
     for db_str in db_scheme_strs:
         prompt_db_scheme+='# '+db_str+'\n'
+    prompt_db_scheme+='#\n'
     
     if db_scheme_fk_strs is not None:
         prompt_db_scheme+=PROMPT['fk']
 
         for fk in db_scheme_fk_strs:
             prompt_db_scheme+='# '+fk+'\n'
+        
+        prompt_db_scheme+='#\n'
 
     if db_scheme_tuple_strs is not None:
         prompt_db_scheme+=PROMPT['tuple']
@@ -452,7 +473,9 @@ def openai_prompt(db_scheme_strs,question,db_scheme_fk_strs=None,db_scheme_tuple
         for tuple_str in db_scheme_tuple_strs:
             prompt_db_scheme+='# '+tuple_str+'\n'
         
-    return prompt_db_scheme.join(PROMPT['OpenAI'])+question+'\n\n'
+        prompt_db_scheme+='#\n'
+        
+    return prompt_db_scheme+'### '+question+'\n'
 
 
 if __name__ == '__main__':
@@ -480,11 +503,11 @@ if __name__ == '__main__':
         db_scheme_tuple_strs=db_scheme[data['db_id']]['str_tuples']
         openai_p=openai_prompt(db_scheme_strs,question,
                                db_scheme_fk_strs=db_scheme_fk_strs,
-                               db_scheme_tuple_strs=db_scheme_tuple_strs)
-        openai_p_split=openai_p.split('\n')
+                               tips=True)
+        openai_p_split=openai_p.split('### SQLite SQL tables , with their properties:\n')
         
-        ans.append({'instruction':openai_p_split[0]+'\n',
-                    'input':'\n'.join(openai_p_split[1:]),
+        ans.append({'instruction':openai_p_split[0],
+                    'input':'### SQLite SQL tables , with their properties:\n'+openai_p_split[-1],
                     'output':data['query'] if not args.do_predict else ''
                     })
     
