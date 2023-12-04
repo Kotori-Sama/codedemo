@@ -44,9 +44,7 @@ def get_tuples(db_file):
             most_common_values = find_values(cursor, table_name)
             for column in most_common_values:
                 values=most_common_values[column]
-                ans+=[f"{table_name}.{column} -> {value}" if not isinstance(value, str) 
-                      else f"{table_name}.{column} -> '{value}'"  
-                      for value in values]
+                ans.append(f"{table_name}.{column} -> {values}")
         
     except sqlite3.Error as e:
         print(f"Error reading from database {db_file}: {e}")

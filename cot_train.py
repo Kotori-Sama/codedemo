@@ -349,7 +349,7 @@ def extract_sql(sql,db_scheme,having_intersect=False,having_except=False,having_
             final_ans+=nested_query_str.join(PROMPT['nested'])+extract_sql({'sql':nested_query,'query':query},db_scheme)
         #print(final_ans)
     
-    return final_ans+PROMPT['ans']+query
+    return final_ans+PROMPT['ans']
 
 def extract_sql_str(sql,db_scheme,having_intersect=False,having_except=False,having_union=False):
     #print('='*10)
@@ -485,6 +485,10 @@ if __name__ == '__main__':
     parser.add_argument('--data_dir', type=str,default='./data/train_spider.json',help='path of data.json')
     parser.add_argument('--output_dir', type=str,default='./data/spider_openai_fk_tuple_data.jsonl',help='path of output file')
     parser.add_argument('--do_predict', action='store_true',default=False,help='whether to generate predict data')
+    parser.add_argument('--fk', action='store_true',default=False,help='whether to add fk')
+    parser.add_argument('--tuple', action='store_true',default=False,help='whether to add tuple data')
+    parser.add_argument('--tips', action='store_true',default=False,help='whether to add tips')
+    parser.add_argument('--cot', action='store_true',default=False,help='whether to add cot info')
     args = parser.parse_args()
 
     db_scheme_path=args.db_scheme
@@ -496,19 +500,20 @@ if __name__ == '__main__':
         db_scheme=json.load(f2)
     ans=[]
     for data in train_data:
-        promt_sql=extract_sql(data,db_scheme=db_scheme[data['db_id']])
+        promt_sql=extract_sql(data,db_scheme=db_scheme[data['db_id']]) if args.cot else ''
         db_scheme_strs=db_scheme[data['db_id']]['str_list']
         question=data['question']
         db_scheme_fk_strs=db_scheme[data['db_id']]['str_fk_list']
         db_scheme_tuple_strs=db_scheme[data['db_id']]['str_tuples']
         openai_p=openai_prompt(db_scheme_strs,question,
-                               db_scheme_fk_strs=db_scheme_fk_strs,
-                               tips=True)
+                               db_scheme_fk_strs=db_scheme_fk_strs if args.fk else None,
+                               db_scheme_tuple_strs=db_scheme_tuple_strs if args.tuple else None,
+                               tips=args.tips)
         openai_p_split=openai_p.split('### SQLite SQL tables , with their properties:\n')
         
         ans.append({'instruction':openai_p_split[0],
                     'input':'### SQLite SQL tables , with their properties:\n'+openai_p_split[-1],
-                    'output':data['query'] if not args.do_predict else ''
+                    'output':promt_sql+data['query'] if not args.do_predict else ''
                     })
     
     with open(args.output_dir,'w',encoding='utf-8') as f:
