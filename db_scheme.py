@@ -15,11 +15,11 @@ def find_values(cursor, table_name):
                 f"SELECT {column} FROM {table_name} GROUP BY {column} ORDER BY COUNT(*) DESC;"
             )
             result = cursor.fetchall()
-            if len(result)>0:
-                most_common_values[column] = [result[0][0]]
-            if len(result)>1:
+            if len(result)>0 and isinstance(result[0][0],str):
+                most_common_values[column] = [result[0][0]] 
+            if len(result)>1 and isinstance(result[1][0],str):
                 most_common_values[column].append(result[1][0])
-            if len(result)>2:
+            if len(result)>2 and isinstance(result[2][0],str):
                 most_common_values[column].append(result[2][0])
 
         return most_common_values
